@@ -1,3 +1,5 @@
+A user-friendly application designed to assist individuals in tracking and improving their lumbar spinal health. This app provides a calendar to track your back health history and plan your exercises.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
