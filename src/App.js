@@ -1,12 +1,12 @@
 import MyCalendar from './Calendar.js'
-import './App.css';
+import './App.css'
 
-function App() {
+function App () {
   return (
     <div>
       <MyCalendar />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
