@@ -1,10 +1,10 @@
-import HomeScreen from './Home.js'
+import MyCalendar from './Calendar.js'
 import './App.css';
 
 function App() {
   return (
     <div>
-      <HomeScreen />
+      <MyCalendar />
     </div>
   );
 }
