@@ -1,0 +1,10 @@
+GET http://localhost:6000/appointments
+
+###
+
+POST http://localhost:6000/appointments
+Content-Type: application/json
+
+{
+    "title": "testing"
+}
