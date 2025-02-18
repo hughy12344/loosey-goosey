@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
 import './ExerciseForm.css'
 
-const ExerciseForm = ({ addExercise, handleCloseForm }) => {
+const ExerciseForm = ({ addAppointment, handleCloseForm }) => {
   const [title, setTitle] = useState('')
   const [start, setStart] = useState('')
   const [end, setEnd] = useState('')
 
   const handleSubmit = (e) => {
+    console.log("handleSubmit")
     e.preventDefault()
-    const newEvent = {
-      title,
+    const newAppointment = {
+      title: title,
       start: new Date(start),
       end: new Date(end)
     }
-    addExercise(newEvent)
+    addAppointment(newAppointment)
+  }
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    handleCloseForm();
   }
 
   return (
@@ -42,7 +48,7 @@ const ExerciseForm = ({ addExercise, handleCloseForm }) => {
             required
             />
             <button type='submit'>Add exercise</button>
-            <button onClick={handleCloseForm}>Close</button>
+            <button type='button' onClick={handleClose}>Close</button>
         </div>
     </form>
   )

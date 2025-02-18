@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 
 const express = require('express')
 const app = express()
@@ -10,8 +11,9 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to database'))
 
 app.use(express.json())
+app.use(cors())
 
 const appointmentRouter = require('./routes/appointments')
 app.use('/appointments', appointmentRouter)
 
-app.listen(6000, () => console.log("Server started"))
+app.listen(8080, () => console.log("Server started"))

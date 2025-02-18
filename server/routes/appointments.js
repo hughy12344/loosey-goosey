@@ -21,7 +21,9 @@ router.get('/:id', getAppointment, (req, res) => {
 //Creating one
 router.post('/', async (req, res) => {
     const appointment = new Appointment({
-        title: req.body.title
+        title: req.body.title,
+        start: req.body.start,
+        end: req.body.end
     })
     try {
         const newAppointment = await appointment.save()
@@ -30,6 +32,7 @@ router.post('/', async (req, res) => {
         res.status(400)
     }
 })
+
 //Updating one
 router.patch('/:id', getAppointment, async (req, res) => {
     if (req.body.title != null) {
@@ -43,6 +46,7 @@ router.patch('/:id', getAppointment, async (req, res) => {
         res.status(400).json({ message: err.message })
     }
 })
+
 //Deleting one
 router.delete('/:id', getAppointment, async (req, res) => {
     try {
