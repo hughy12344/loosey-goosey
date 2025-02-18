@@ -2,9 +2,26 @@ GET http://localhost:6000/appointments
 
 ###
 
+GET http://localhost:6000/appointments/67b2e9c556e2149a3f392bcd
+
+###
+
 POST http://localhost:6000/appointments
 Content-Type: application/json
 
 {
     "title": "testing"
+}
+
+###
+
+DELETE http://localhost:6000/appointments/67b2e9c556e2149a3f392bcd
+
+###
+
+PATCH http://localhost:6000/appointments/67b40d9e3f9790ba40453f8e
+Content-Type: application/json
+
+{
+    "title": "new title"
 }
