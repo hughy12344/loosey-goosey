@@ -19,6 +19,7 @@ const MyCalendar = () => {
         const response = await fetch('http://localhost:8080/appointments')
         const data = await response.json()
         const formattedEvents = data.map(appointment => ({
+          id: appointment._id,
           title: appointment.title,
           start: new Date(appointment.start),
           end: new Date(appointment.end)
@@ -32,7 +33,6 @@ const MyCalendar = () => {
   }, [])
 
   const addAppointment = async (appointment) => {
-    console.log(appointment)
     try {
       const response = await fetch('http://localhost:8080/appointments', {
         method: 'POST',
@@ -41,13 +41,23 @@ const MyCalendar = () => {
         },
         body: JSON.stringify(appointment)
       })
-
       const newAppointment = await response.json()
-      console.log(newAppointment)
       setEvents([...events, newAppointment])
       setShowForm(false)
     } catch (err) {
       console.error("Error adding appointment: ", err)
+    }
+  }
+
+  const deleteAppointment = async (appointmentId) => {
+    try {
+      await fetch(`http://localhost:8080/appointments/${appointmentId}`, {
+        method: 'DELETE'
+      })
+      setEvents(events.filter(event => event.id !== appointmentId))
+      setSelectedEvent(null)
+    } catch (err) {
+      console.error("Error deleting appointment: ", err)
     }
   }
 
@@ -84,6 +94,7 @@ const MyCalendar = () => {
       <div className="pane-open">
           <EventDetails
             selectedEvent={selectedEvent}
+            deleteAppointment={deleteAppointment}
             handleCloseEventDetails={handleCloseEventDetails}
           />
       </div>

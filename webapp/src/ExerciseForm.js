@@ -7,7 +7,6 @@ const ExerciseForm = ({ addAppointment, handleCloseForm }) => {
   const [end, setEnd] = useState('')
 
   const handleSubmit = (e) => {
-    console.log("handleSubmit")
     e.preventDefault()
     const newAppointment = {
       title: title,
