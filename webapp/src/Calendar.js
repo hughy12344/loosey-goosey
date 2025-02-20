@@ -26,7 +26,7 @@ const MyCalendar = () => {
         }))
         setEvents(formattedEvents)
       } catch (err) {
-        console.error("Error fetching appointments: ", err)
+        console.error('Error fetching appointments: ', err)
       }
     }
     fetchAppointments()
@@ -37,7 +37,7 @@ const MyCalendar = () => {
       const response = await fetch('http://localhost:8080/appointments', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(appointment)
       })
@@ -45,7 +45,7 @@ const MyCalendar = () => {
       setEvents([...events, newAppointment])
       setShowForm(false)
     } catch (err) {
-      console.error("Error adding appointment: ", err)
+      console.error('Error adding appointment: ', err)
     }
   }
 
@@ -57,7 +57,7 @@ const MyCalendar = () => {
       setEvents(events.filter(event => event.id !== appointmentId))
       setSelectedEvent(null)
     } catch (err) {
-      console.error("Error deleting appointment: ", err)
+      console.error('Error deleting appointment: ', err)
     }
   }
 
@@ -80,25 +80,25 @@ const MyCalendar = () => {
         onSelectEvent={handleEventClick}
       />
 
-    <button onClick={handleOpenForm}>Add Appointment</button>
-    {showForm && (
-        <div className="pane-open">
-            <ExerciseForm 
-                addAppointment={addAppointment} 
-                handleCloseForm={handleCloseForm}
-            />
+      <button onClick={handleOpenForm}>Add Appointment</button>
+      {showForm && (
+        <div className='pane-open'>
+          <ExerciseForm
+            addAppointment={addAppointment}
+            handleCloseForm={handleCloseForm}
+          />
         </div>
-    )}
+      )}
 
-    {selectedEvent && (
-      <div className="pane-open">
+      {selectedEvent && (
+        <div className='pane-open'>
           <EventDetails
             selectedEvent={selectedEvent}
             deleteAppointment={deleteAppointment}
             handleCloseEventDetails={handleCloseEventDetails}
           />
-      </div>
-    )}
+        </div>
+      )}
     </div>
   )
 }

@@ -16,4 +16,4 @@ app.use(cors())
 const appointmentRouter = require('./routes/appointments')
 app.use('/appointments', appointmentRouter)
 
-app.listen(8080, () => console.log("Server started"))
+app.listen(8080, () => console.log('Server started'))
