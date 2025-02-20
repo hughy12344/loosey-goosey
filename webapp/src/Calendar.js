@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import ExerciseForm from './ExerciseForm'
+import EventDetails from './EventDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
 
@@ -10,6 +11,7 @@ const localiser = momentLocalizer(moment)
 const MyCalendar = () => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
+  const [selectedEvent, setSelectedEvent] = useState(null)
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -52,6 +54,11 @@ const MyCalendar = () => {
   const handleOpenForm = () => setShowForm(true)
   const handleCloseForm = () => setShowForm(false)
 
+  const handleEventClick = (event) => {
+    setSelectedEvent(event)
+  }
+  const handleCloseEventDetails = () => setSelectedEvent(null)
+
   return (
     <div>
       <h1>Spinal Health Organiser</h1>
@@ -60,17 +67,27 @@ const MyCalendar = () => {
         localizer={localiser}
         events={events}
         style={{ height: 500 }}
+        onSelectEvent={handleEventClick}
       />
 
     <button onClick={handleOpenForm}>Add Appointment</button>
-        {showForm && (
-            <div className="form">
-                <ExerciseForm 
-                    addAppointment={addAppointment} 
-                    handleCloseForm={handleCloseForm}
-                />
-            </div>
-        )}
+    {showForm && (
+        <div className="pane-open">
+            <ExerciseForm 
+                addAppointment={addAppointment} 
+                handleCloseForm={handleCloseForm}
+            />
+        </div>
+    )}
+
+    {selectedEvent && (
+      <div className="pane-open">
+          <EventDetails
+            selectedEvent={selectedEvent}
+            handleCloseEventDetails={handleCloseEventDetails}
+          />
+      </div>
+    )}
     </div>
   )
 }
