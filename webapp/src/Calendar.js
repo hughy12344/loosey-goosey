@@ -5,6 +5,8 @@ import ExerciseForm from './ExerciseForm'
 import EventDetails from './EventDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
+import RegisterForm from './RegisterForm'
+import LoginForm from './LoginForm'
 
 const localiser = momentLocalizer(moment)
 
@@ -12,11 +14,18 @@ const MyCalendar = () => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem('token'))
 
   useEffect(() => {
     const fetchAppointments = async () => {
+      if (!token) return
+
       try {
-        const response = await fetch('http://localhost:8080/appointments')
+        const response = await fetch('http://localhost:8080/appointments', {
+          headers: {
+            'x-auth-token': token
+          }
+        })
         const data = await response.json()
         const formattedEvents = data.map(appointment => ({
           id: appointment._id,
@@ -30,7 +39,7 @@ const MyCalendar = () => {
       }
     }
     fetchAppointments()
-  }, [])
+  }, [token])
 
   const addAppointment = async (appointment) => {
     try {
@@ -99,6 +108,9 @@ const MyCalendar = () => {
           />
         </div>
       )}
+
+      <RegisterForm />
+      <LoginForm setToken={setToken} />
     </div>
   )
 }
