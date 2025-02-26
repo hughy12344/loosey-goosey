@@ -5,16 +5,13 @@ import ExerciseForm from './ExerciseForm'
 import EventDetails from './EventDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
-import RegisterForm from './RegisterForm'
-import LoginForm from './LoginForm'
 
 const localiser = momentLocalizer(moment)
 
-const MyCalendar = () => {
+const MyCalendar = (token) => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
-  const [token, setToken] = useState(localStorage.getItem('token'))
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -80,8 +77,6 @@ const MyCalendar = () => {
 
   return (
     <div>
-      <h1>Spinal Health Organiser</h1>
-
       <Calendar
         localizer={localiser}
         events={events}
@@ -108,9 +103,6 @@ const MyCalendar = () => {
           />
         </div>
       )}
-
-      <RegisterForm />
-      <LoginForm setToken={setToken} />
     </div>
   )
 }
