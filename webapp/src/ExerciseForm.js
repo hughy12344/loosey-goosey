@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ExerciseForm.css'
 
-const ExerciseForm = ({ addAppointment, handleCloseForm }) => {
+const ExerciseForm = ({ addAppointment, handleCloseForm, userID }) => {
   const [title, setTitle] = useState('')
   const [start, setStart] = useState('')
   const [end, setEnd] = useState('')
@@ -11,7 +11,8 @@ const ExerciseForm = ({ addAppointment, handleCloseForm }) => {
     const newAppointment = {
       title,
       start: new Date(start),
-      end: new Date(end)
+      end: new Date(end),
+      userID
     }
     addAppointment(newAppointment)
   }

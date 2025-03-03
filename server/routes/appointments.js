@@ -22,7 +22,8 @@ router.post('/', async (req, res) => {
   const appointment = new Appointment({
     title: req.body.title,
     start: req.body.start,
-    end: req.body.end
+    end: req.body.end,
+    userID: req.body.userID
   })
   try {
     const newAppointment = await appointment.save()

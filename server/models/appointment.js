@@ -12,6 +12,10 @@ const appointmentSchema = new mongoose.Schema({
   end: {
     type: Date,
     required: true
+  },
+  userID: {
+    type: String,
+    required: true
   }
 })
 

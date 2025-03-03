@@ -8,7 +8,7 @@ import './Calendar.css'
 
 const localiser = momentLocalizer(moment)
 
-const MyCalendar = (token) => {
+const MyCalendar = ({token, userID, firstName}) => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
@@ -24,7 +24,8 @@ const MyCalendar = (token) => {
           }
         })
         const data = await response.json()
-        const formattedEvents = data.map(appointment => ({
+        const formattedEvents = data.filter(appointment => appointment.userID === userID)
+        .map(appointment => ({
           id: appointment._id,
           title: appointment.title,
           start: new Date(appointment.start),
@@ -77,6 +78,7 @@ const MyCalendar = (token) => {
 
   return (
     <div>
+      <h2>Welcome, {firstName}!</h2>
       <Calendar
         localizer={localiser}
         events={events}
@@ -90,6 +92,7 @@ const MyCalendar = (token) => {
           <ExerciseForm
             addAppointment={addAppointment}
             handleCloseForm={handleCloseForm}
+            userID={userID}
           />
         </div>
       )}

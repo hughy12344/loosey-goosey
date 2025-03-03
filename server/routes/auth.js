@@ -11,7 +11,8 @@ router.post(
   '/register',
   [
     body('email').isEmail().normalizeEmail(),
-    body('password').isLength({ min: 6 })
+    body('password').isLength({ min: 6 }),
+    body('firstName')
   ],
   async (req, res) => {
     const errors = validationResult(req)
@@ -19,7 +20,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { email, password } = req.body
+    const { email, password, firstName } = req.body
 
     try {
       let user = await User.findOne({ email })
@@ -32,7 +33,8 @@ router.post(
 
       user = new User({
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        firstName
       })
 
       await user.save()
@@ -78,7 +80,7 @@ router.post(
       const payload = { user: { id: user.id } }
       jwt.sign(payload, 'your-jwt-secret', { expiresIn: '1h' }, (err, token) => {
         if (err) throw err
-        res.json({ token })
+        res.json({ token, user: {firstName: user.firstName, _id: user._id} })
       })
     } catch (err) {
       console.error(err)

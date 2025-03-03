@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const LoginForm = ({ setToken }) => {
+const LoginForm = ({ handleLogin }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -17,17 +17,18 @@ const LoginForm = ({ setToken }) => {
     })
 
     const data = await response.json()
+    console.log(data)
 
     if (data.token) {
       localStorage.setItem('token', data.token)
-      setToken(data.token)
+      handleLogin(data.token, data.user._id, data.user.firstName)
     }
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type='email' value={email} onChange={e => setEmail(e.target.value)} />
-      <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+      <input placeholder="Email..." type='email' value={email} onChange={e => setEmail(e.target.value)} />
+      <input placeholder="Password..." type='password' value={password} onChange={e => setPassword(e.target.value)} />
       <button type='submit'>Login</button>
       <p>No account? Register here: </p>
       <NavLink to="/register">Register</NavLink>
