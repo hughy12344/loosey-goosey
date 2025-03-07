@@ -8,7 +8,7 @@ import './Calendar.css'
 
 const localiser = momentLocalizer(moment)
 
-const MyCalendar = ({token, userID, firstName}) => {
+const MyCalendar = ({token, userID}) => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
@@ -78,7 +78,6 @@ const MyCalendar = ({token, userID, firstName}) => {
 
   return (
     <div>
-      <h2>Welcome, {firstName}!</h2>
       <Calendar
         localizer={localiser}
         events={events}
