@@ -6,7 +6,7 @@ const Banner = ({handleLogout, firstName, isLoggedIn}) => {
     return(
         <div className='banner'>
             <div className='bannerContent'>
-                <img src='/goose.svg' alt='Goose image' width='50px'/>
+                <img src='/goose.svg' alt='Goose' width='50px'/>
                 <h1>Loosey-Goosey</h1>
                 <NavLink to="/">Home</NavLink>
                 {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}

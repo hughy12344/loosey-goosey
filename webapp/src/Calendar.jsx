@@ -37,7 +37,7 @@ const MyCalendar = ({token, userID}) => {
       }
     }
     fetchAppointments()
-  }, [token])
+  }, [token, userID])
 
   const addAppointment = async (appointment) => {
     try {
