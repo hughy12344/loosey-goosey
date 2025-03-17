@@ -2,7 +2,8 @@
   import './ExerciseForm.css'
 
   const ExerciseForm = ({ addAppointment, handleCloseForm, userID }) => {
-    const [title, setTitle] = useState('')
+    //Abdominal workout is first option of dropdown (default)
+    const [title, setTitle] = useState('Abdominal workout')
     const [start, setStart] = useState('')
     const [end, setEnd] = useState('')
     const [customTitle, setCustomTitle] = useState('')
