@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import MyCalendar from './Calendar.js'
-import LoginForm from './LoginForm.js'
-import RegisterForm from './RegisterForm.js'
-import Banner from './Banner.js'
-import Home from './Home.jsx'
+import MyCalendar from './Calendar'
+import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
+import Banner from './Banner'
+import Home from './Home'
 
 function App () {
   const [token, setToken] = useState(localStorage.getItem('token'))
