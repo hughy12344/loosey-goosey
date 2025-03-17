@@ -25,13 +25,17 @@ const LoginForm = ({ handleLogin }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input placeholder="Email..." type='email' value={email} onChange={e => setEmail(e.target.value)} />
-      <input placeholder="Password..." type='password' value={password} onChange={e => setPassword(e.target.value)} />
-      <button type='submit'>Login</button>
-      <p>No account? Register here: </p>
-      <NavLink to="/register">Register</NavLink>
-    </form>
+    <div>
+      <div className='login-box'>
+        <form onSubmit={handleSubmit}>
+        <input placeholder="Email..." type='email' value={email} onChange={e => setEmail(e.target.value)} />
+        <input placeholder="Password..." type='password' value={password} onChange={e => setPassword(e.target.value)} />
+        <button type='submit'>Login</button>
+        <p>No account? Register here: </p>
+        <NavLink to="/register">Register</NavLink>
+        </form>
+      </div>
+    </div>
   )
 }
 

@@ -5,7 +5,6 @@ import LoginForm from './LoginForm.js'
 import RegisterForm from './RegisterForm.js'
 import Banner from './Banner.js'
 import Home from './Home.js'
-import './App.css'
 
 function App () {
   const [token, setToken] = useState(localStorage.getItem('token'))

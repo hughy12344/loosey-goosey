@@ -4,16 +4,18 @@ import './Banner.css'
 
 const Banner = ({handleLogout, firstName, isLoggedIn}) => {
     return(
-        <div className='bannerContent'>
-            <h1>Spinal Health Organiser</h1>
-            <h2>{firstName ? "Welcome, " + firstName + "!": ""}</h2>
-            <NavLink to="/">Home</NavLink>
-            {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}
-            {!isLoggedIn ? (
-                <NavLink to="/login">Login</NavLink>
-            ) : (
-                <button onClick={handleLogout}>Logout</button>
-            )}
+        <div className='banner'>
+            <div className='bannerContent'>
+                <h1>Loosey-Goosey</h1>
+                <h2>{firstName ? "Welcome, " + firstName + "!": ""}</h2>
+                <NavLink to="/">Home</NavLink>
+                {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}
+                {!isLoggedIn ? (
+                    <NavLink to="/login">Login</NavLink>
+                ) : (
+                    <button color='#C87037' onClick={handleLogout}>Logout</button>
+                )}
+            </div>
         </div>
     )
 }
