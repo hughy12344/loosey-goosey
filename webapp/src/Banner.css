@@ -7,3 +7,17 @@
     justify-content: center;
     gap: 20px;
 }
+
+.banner button {
+    background-color: #D36A2C;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .banner button:hover {
+    background-color: #e3a17a; 
+  }

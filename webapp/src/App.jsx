@@ -5,6 +5,7 @@ import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import Banner from './Banner'
 import Home from './Home'
+import './App.css'
 
 function App () {
   const [token, setToken] = useState(localStorage.getItem('token'))
@@ -33,12 +34,16 @@ function App () {
   return (
     <div>
       <Banner handleLogout={handleLogout} firstName={firstName} isLoggedIn={isLoggedIn}/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path ="/calendar" element={<MyCalendar token={token} userID={userID}/>} />
-        <Route path ="/login" element={<LoginForm handleLogin={handleLogin}/>} />
-        <Route path ="/register" element={<RegisterForm />} />
-      </Routes>
+      <div className='page'>
+        <div className='pageContent'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calendar" element={<MyCalendar token={token} userID={userID}/>} />
+            <Route path="/login" element={<LoginForm handleLogin={handleLogin}/>} />
+            <Route path="/register" element={<RegisterForm />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }

@@ -6,11 +6,11 @@ const Banner = ({handleLogout, firstName, isLoggedIn}) => {
     return(
         <div className='banner'>
             <div className='bannerContent'>
-                <img src='/goose.svg' alt='Goose image' width='75px'/>
+                <img src='/goose.svg' alt='Goose image' width='50px'/>
                 <h1>Loosey-Goosey</h1>
-                <h2>{firstName ? "Welcome, " + firstName + "!": ""}</h2>
                 <NavLink to="/">Home</NavLink>
                 {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}
+                <p>{firstName ? "Welcome, " + firstName + "!": ""}</p>
                 {!isLoggedIn ? (
                     <NavLink to="/login">Login</NavLink>
                 ) : (
