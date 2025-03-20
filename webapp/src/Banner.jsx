@@ -1,8 +1,8 @@
-import React from 'react'
+
 import { NavLink } from 'react-router-dom'
 import './Banner.css'
 
-const Banner = ({handleLogout, firstName, isLoggedIn}) => {
+const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
     return(
         <div className='banner'>
             <div className='bannerContent'>
@@ -10,8 +10,8 @@ const Banner = ({handleLogout, firstName, isLoggedIn}) => {
                 <h1>Loosey-Goosey</h1>
                 <NavLink to="/">Home</NavLink>
                 {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}
-                <p>{firstName ? "Welcome, " + firstName + "!": ""}</p>
-                {!isLoggedIn ? (
+                <p>{firstName && isLoggedIn ? "Welcome, " + firstName + "!": ""}</p>
+                {!isLoggedIn || isLoggedIn === null ? (
                     <NavLink to="/login">Login</NavLink>
                 ) : (
                     <button color='#C87037' onClick={handleLogout}>Logout</button>

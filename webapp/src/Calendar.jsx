@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
+import Cookies from 'js-cookie'
 import ExerciseForm from './ExerciseForm'
 import EventDetails from './EventDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -8,20 +9,20 @@ import './Calendar.css'
 
 const localiser = momentLocalizer(moment)
 
-const MyCalendar = ({token, userID}) => {
+const MyCalendar = () => {
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
+  const userID = Cookies.get('userID')
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      if (!token) return
-
       try {
         const response = await fetch('http://localhost:8080/appointments', {
           headers: {
-            'x-auth-token': token
-          }
+            method: 'GET'
+          },
+          credentials: 'include'
         })
         const data = await response.json()
         const formattedEvents = data.filter(appointment => appointment.userID === userID)
@@ -37,7 +38,7 @@ const MyCalendar = ({token, userID}) => {
       }
     }
     fetchAppointments()
-  }, [token, userID])
+  }, [userID])
 
   const addAppointment = async (appointment) => {
     try {
@@ -46,7 +47,8 @@ const MyCalendar = ({token, userID}) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(appointment)
+        body: JSON.stringify(appointment),
+        credentials: 'include'
       })
       const newAppointment = await response.json()
       setEvents([...events, newAppointment])
@@ -59,7 +61,8 @@ const MyCalendar = ({token, userID}) => {
   const deleteAppointment = async (appointmentId) => {
     try {
       await fetch(`http://localhost:8080/appointments/${appointmentId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        credentials: 'include'
       })
       setEvents(events.filter(event => event.id !== appointmentId))
       setSelectedEvent(null)

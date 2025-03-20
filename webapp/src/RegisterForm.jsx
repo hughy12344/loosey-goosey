@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const RegisterForm = () => {
   const [email, setEmail] = useState('')
@@ -24,10 +25,13 @@ const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Register</h1>
       <input placeholder="Email..." type='email' value={email} onChange={e => setEmail(e.target.value)} />
       <input placeholder="Password..." type='password' value={password} onChange={e => setPassword(e.target.value)} />
       <input placeholder="Name..." value={firstName} onChange={e => setFirstName(e.target.value)} />
       <button type='submit'>Register</button>
+      <p>Already have an account? Login here:</p>
+      <NavLink to="/login">Login</NavLink>
     </form>
   )
 }
