@@ -8,7 +8,7 @@ const appointmentRouter = require('./routes/appointments')
 const authRouter = require('./routes/auth')
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:5173',
     credentials: true,
 };
 
