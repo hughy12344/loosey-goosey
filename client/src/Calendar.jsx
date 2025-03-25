@@ -109,7 +109,10 @@ const MyCalendar = () => {
 
   return (
     <div>
-      <button onClick={handleOpenForm}>Add Appointment</button>
+      <button 
+        onClick={handleOpenForm}
+        className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
+      >Add Appointment</button>
         {showForm && (
           <div className='pane-open'>
             <ExerciseForm
