@@ -1,20 +1,23 @@
 import { NavLink } from 'react-router-dom'
-import './Banner.css'
 
 const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
     return(
-        <div className='banner'>
-            <div className='bannerContent'>
-                <img src='/goose.svg' alt='Goose' width='50px'/>
-                <h1>Loosey-Goosey</h1>
-                <NavLink to="/">Home</NavLink>
-                {isLoggedIn && <NavLink to="/calendar">Calendar</NavLink>}
-                <p>{firstName && isLoggedIn ? "Welcome, " + firstName + "!": ""}</p>
-                {!isLoggedIn || isLoggedIn === null ? (
-                    <NavLink to="/login">Login</NavLink>
-                ) : (
-                    <button color='#C87037' onClick={handleLogout}>Logout</button>
-                )}
+        <div className="bg-gray-800">
+            <div className="flex gap-10 lg:gap-20 justify-between">
+                <div className="flex gap-4 items-center flex-shrink-0">
+                    <img src='/goose.svg' alt='Goose' width='50px'/>
+                    <a href="/" className="text-white">Loosey-Goosey</a>
+                </div>
+                <div className="flex gap-4 items-center flex-shrink-0">
+                    {isLoggedIn && 
+                    <a className="text-white" href="/calendar">Calendar</a>}
+                    <p className="text-white ">{firstName && isLoggedIn ? "Welcome, " + firstName + "!": ""}</p>
+                    {!isLoggedIn || isLoggedIn === null ? (
+                        <a className="items-center text-white" href="/login">Login</a>
+                    ) : (
+                        <button className="text-white" onClick={handleLogout}>Logout</button>
+                    )}
+                </div>
             </div>
         </div>
     )

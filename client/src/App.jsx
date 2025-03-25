@@ -73,22 +73,18 @@ function App () {
   return (
     <div>
       <Banner isLoggedIn={isLoggedIn} firstName={firstName} handleLogout={handleLogout}/>
-      <div className="">
-        <header className="bg-white shadow-sm">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">{pageTitle}</h1>
-          </div>
-        </header>
-        <main className="bg-slate-200">
-          <div className="bg-white mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/calendar" element={<MyCalendar />} />
-              <Route path="/login" element={<LoginForm handleLogin={handleLogin}/>} />
-              <Route path="/register" element={<RegisterForm />} />
-            </Routes>
-          </div>
-        </main>
+      <div className="bg-white max-w-sm mx-auto py-6">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">{pageTitle}</h1>
+      </div>
+      <div className="bg-white">
+        <div className="bg-white max-w-sm mx-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calendar" element={<MyCalendar />} />
+            <Route path="/login" element={<LoginForm handleLogin={handleLogin}/>} />
+            <Route path="/register" element={<RegisterForm />} />
+          </Routes>
+        </div>
       </div>
     </div>
   )
