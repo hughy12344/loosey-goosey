@@ -73,11 +73,11 @@ function App () {
   return (
     <div>
       <Banner isLoggedIn={isLoggedIn} firstName={firstName} handleLogout={handleLogout}/>
-      <div className="bg-white max-w-sm mx-auto py-6">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">{pageTitle}</h1>
-      </div>
-      <div className="bg-white">
-        <div className="bg-white max-w-sm mx-auto">
+      <div className="bg-slate-200">
+        <div className="bg-white max-w-3xl mx-auto py-6">
+          <h1 className="text-3xl font-bold text-gray-900 px-5">{pageTitle}</h1>
+        </div>
+        <div className="bg-white max-w-3xl mx-auto px-5">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/calendar" element={<MyCalendar />} />

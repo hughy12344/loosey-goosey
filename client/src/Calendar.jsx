@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import Cookies from 'js-cookie'
 import ExerciseForm from './ExerciseForm'
@@ -14,6 +14,8 @@ const MyCalendar = () => {
   const [showForm, setShowForm] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState(null)
   const userID = Cookies.get('userID')
+  const [currentView, setCurrentView] = useState(Views.MONTH)
+  const [currentDate, setCurrentDate] = useState(new Date())
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -79,25 +81,56 @@ const MyCalendar = () => {
   }
   const handleCloseEventDetails = () => setSelectedEvent(null)
 
+  const handleViewChange = (view) => {
+    setCurrentView(view)
+  }
+
+  const handleNavigate = (date, view, action) => {
+    switch (action) {
+      case 'PREV':
+        setCurrentDate(prevDate => {
+          const newDate = moment(prevDate).subtract(1, view).toDate();
+          return newDate;
+        });
+        break;
+      case 'NEXT':
+        setCurrentDate(prevDate => {
+          const newDate = moment(prevDate).add(1, view).toDate();
+          return newDate;
+        });
+        break;
+      case 'TODAY':
+        setCurrentDate(new Date());
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div>
+      <button onClick={handleOpenForm}>Add Appointment</button>
+        {showForm && (
+          <div className='pane-open'>
+            <ExerciseForm
+              addAppointment={addAppointment}
+              handleCloseForm={handleCloseForm}
+              userID={userID}
+            />
+          </div>
+      )}
+
       <Calendar
         localizer={localiser}
         events={events}
         style={{ height: 500 }}
         onSelectEvent={handleEventClick}
+        views={['month', 'week', 'day', 'agenda']}
+        view={currentView}
+        onView={handleViewChange}
+        onNavigate={handleNavigate}
+        date={currentDate}
       />
-
-      <button onClick={handleOpenForm}>Add Appointment</button>
-      {showForm && (
-        <div className='pane-open'>
-          <ExerciseForm
-            addAppointment={addAppointment}
-            handleCloseForm={handleCloseForm}
-            userID={userID}
-          />
-        </div>
-      )}
 
       {selectedEvent && (
         <div className='pane-open'>
