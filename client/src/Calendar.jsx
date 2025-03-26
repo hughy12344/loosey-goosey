@@ -28,12 +28,12 @@ const MyCalendar = () => {
         })
         const data = await response.json()
         const formattedEvents = data.filter(appointment => appointment.userID === userID)
-        .map(appointment => ({
-          id: appointment._id,
-          title: appointment.title,
-          start: new Date(appointment.start),
-          end: new Date(appointment.end)
-        }))
+          .map(appointment => ({
+            id: appointment._id,
+            title: appointment.title,
+            start: new Date(appointment.start),
+            end: new Date(appointment.end)
+          }))
         setEvents(formattedEvents)
       } catch (err) {
         console.error('Error fetching appointments: ', err)
@@ -89,38 +89,39 @@ const MyCalendar = () => {
     switch (action) {
       case 'PREV':
         setCurrentDate(prevDate => {
-          const newDate = moment(prevDate).subtract(1, view).toDate();
-          return newDate;
-        });
-        break;
+          const newDate = moment(prevDate).subtract(1, view).toDate()
+          return newDate
+        })
+        break
       case 'NEXT':
         setCurrentDate(prevDate => {
-          const newDate = moment(prevDate).add(1, view).toDate();
-          return newDate;
-        });
-        break;
+          const newDate = moment(prevDate).add(1, view).toDate()
+          return newDate
+        })
+        break
       case 'TODAY':
-        setCurrentDate(new Date());
-        break;
+        setCurrentDate(new Date())
+        break
       default:
-        break;
+        break
     }
   }
 
   return (
     <div>
-      <button 
+      <button
         onClick={handleOpenForm}
         className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
-      >Add Appointment</button>
-        {showForm && (
-          <div className='pane-open'>
-            <ExerciseForm
-              addAppointment={addAppointment}
-              handleCloseForm={handleCloseForm}
-              userID={userID}
-            />
-          </div>
+      >Add Appointment
+      </button>
+      {showForm && (
+        <div className='pane-open'>
+          <ExerciseForm
+            addAppointment={addAppointment}
+            handleCloseForm={handleCloseForm}
+            userID={userID}
+          />
+        </div>
       )}
 
       <Calendar
