@@ -1,7 +1,7 @@
-import { CalendarDays, LogOut } from 'lucide-react'
+import { CalendarDays, LogOut, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
+const Banner = ({ isLoggedIn, firstName, userType, handleLogout }) => {
   return (
     <div className='bg-gray-800'>
       <div className='flex gap-10 lg:gap-20 justify-between'>
@@ -11,10 +11,15 @@ const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
           </Link>
         </div>
         <div className='flex gap-4 items-center flex-shrink-0'>
-          {isLoggedIn &&
+          {isLoggedIn && userType === 'client' &&
             <Link to='/calendar'>
               <CalendarDays href='/calendar' className='text-white' />
             </Link>}
+          {isLoggedIn && userType === 'practitioner' && 
+            <Link to='/clients'>
+              <Users href='/clients' className='text-white' />
+            </Link>
+          }
           <p className='text-white text-sm'>{firstName && isLoggedIn ? 'Welcome, ' + firstName + '!' : ''}</p>
           {!isLoggedIn || isLoggedIn === null
             ? (

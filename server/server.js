@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const appointmentRouter = require('./routes/appointments')
 const authRouter = require('./routes/auth')
+const clientRouter = require('./routes/clients')
 
 const corsOptions = {
     origin: 'http://localhost:5173',
@@ -24,6 +25,7 @@ db.once('open', () => console.log('Connected to database'))
 
 app.use('/appointments', require('./middleware/auth'), appointmentRouter)
 app.use('/auth', authRouter)
+app.use('/clients', clientRouter)
 
 const PORT = process.env.PORT
 app.listen(8080, () => console.log(`Server started on port ${PORT}`))

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
 
 const RegisterForm = () => {
+  const [type, setType] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -14,49 +14,73 @@ const RegisterForm = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password, firstName })
+      body: JSON.stringify({ type, email, password, firstName })
     })
 
     const data = await response.json()
     if (data.token) {
       localStorage.setItem('token', data.token)
+      alert('Registration successful! You can now login.')
+    } else {
+      alert(data.error || 'Registration failed! Please try again.')
     }
   }
 
   return (
     <form autoComplete='off' onSubmit={handleSubmit}>
+      <fieldset>
+        <legend className='block text-sm font-medium text-gray-900'>User type</legend>
+        <div className='flex items-center gap-x-6'>
+          <input 
+            id='userPractitioner'
+            name='radioUser'
+            type='radio'
+            value='practitioner'
+            checked={type === 'practitioner'}
+            onChange={e => setType(e.target.value)}
+            className='relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-sky-500 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden'
+          />
+          <label htmlFor='userPractitioner' className='block text-sm'>Practitioner</label>
+        </div>
+        <div className='flex items-center gap-x-6 mb-3'>
+          <input 
+            id='userClient'
+            name='radioUser'
+            type='radio'
+            value='client'
+            checked={type === 'client'}
+            onChange={e => setType(e.target.value)}
+            className='relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-sky-500 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden'
+          />
+          <label htmlFor='userClient' className='block text-sm'>Client</label>
+        </div>
+      </fieldset>
       <label htmlFor='registrationEmail' className='block text-sm font-medium text-gray-900'>Email</label>
       <input
         id='registrationEmail'
-        name='registrationEmail'
         placeholder='johnsmith@gmail.com'
         type='email'
         value={email}
         onChange={e => setEmail(e.target.value)}
         required
-        autoComplete='off'
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
       <label htmlFor='registrationPassword' className='block text-sm font-medium text-gray-900'>Password</label>
       <input
         id='registrationPassword'
-        name='registrationPassword'
         type='password'
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
-        autoComplete='off'
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
       <label htmlFor='registrationFirstName' className='block text-sm font-medium text-gray-900'>First Name</label>
       <input
         id='registrationFirstName'
-        name='registrationFirstName'
         placeholder='John'
         value={firstName}
         onChange={e => setFirstName(e.target.value)}
         required
-        autoComplete='off'
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
       <button

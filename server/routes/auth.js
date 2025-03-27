@@ -10,7 +10,8 @@
   router.post(
     '/register',
     [
-      body('email').isEmail().normalizeEmail(),
+      body('type'),
+      body('email').isEmail(),
       body('password').isLength({ min: 6 }),
       body('firstName')
     ],
@@ -20,7 +21,7 @@
         return res.status(400).json({ errors: errors.array() })
       }
 
-      const { email, password, firstName } = req.body
+      const { type, email, password, firstName } = req.body
 
       try {
         let user = await User.findOne({ email })
@@ -32,6 +33,7 @@
         const hashedPassword = await bcrypt.hash(password, salt)
 
         user = new User({
+          type,
           email,
           password: hashedPassword,
           firstName
@@ -88,7 +90,7 @@
         })
 
         res.json({
-          user: {firstName: user.firstName, _id: user._id}
+          user: {firstName: user.firstName, _id: user._id, type: user.type}
         })
       } catch (err) {
         console.error(err)
@@ -100,13 +102,37 @@
   //Logout Route
   router.post(
     '/logout', 
-    (req, res) => {
+    async (req, res) => {
       try {
         res.clearCookie('token', { httpOnly: true, secure: false, sameSite: 'Lax'})
         res.status(200).json({ message: 'Logged out successfully'})
       } catch (err) {
         console.error(err)
         res.status(500).send('Server error')
+      }
+    }
+  )
+
+  //Get User ID by Email
+  router.get(
+    '/getUserByEmail',
+    async (req, res) => {
+      try {
+        const { email } = req.query
+        if (!email) {
+          return res.status(400).json({ message: 'Email is required' })
+        }
+
+        const user = await User.findOne({ email })
+
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' })
+        }
+
+        res.json({ userID: user._id })
+      } catch (err) {
+          console.error(err)
+          res.status(500).send('Server error')
       }
     }
   )

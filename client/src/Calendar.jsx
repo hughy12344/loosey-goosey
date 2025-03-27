@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import ExerciseForm from './ExerciseForm'
 import EventDetails from './EventDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import './Calendar.css'
 
 const localiser = momentLocalizer(moment)
 
@@ -115,7 +114,7 @@ const MyCalendar = () => {
       >Add Appointment
       </button>
       {showForm && (
-        <div className='pane-open'>
+        <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
           <ExerciseForm
             addAppointment={addAppointment}
             handleCloseForm={handleCloseForm}
@@ -137,7 +136,7 @@ const MyCalendar = () => {
       />
 
       {selectedEvent && (
-        <div className='pane-open'>
+        <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
           <EventDetails
             selectedEvent={selectedEvent}
             deleteAppointment={deleteAppointment}

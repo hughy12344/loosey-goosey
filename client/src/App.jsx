@@ -6,6 +6,7 @@ import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import Banner from './Banner'
 import Home from './Home'
+import Clients from './Clients'
 import './App.css'
 
 function App () {
@@ -13,22 +14,27 @@ function App () {
   const location = useLocation()
   const [isLoggedIn, setIsLoggedIn] = useState(null)
   const [firstName, setFirstName] = useState('')
+  const [userType, setUserType] = useState('')
 
   useEffect(() => {
     const userID = Cookies.get('userID')
     const firstName = Cookies.get('firstName')
+    const userType = Cookies.get('userType')
 
     if (userID) {
       setIsLoggedIn(true)
       setFirstName(firstName)
+      setUserType(userType)
     } else {
       setIsLoggedIn(false)
+      setUserType('')
     }
   }, [])
 
-  const handleLogin = (firstName) => {
+  const handleLogin = (firstName, userType) => {
     setIsLoggedIn(true)
     setFirstName(firstName)
+    setUserType(userType)
   }
 
   const handleLogout = async () => {
@@ -44,8 +50,11 @@ function App () {
 
       Cookies.remove('userID')
       Cookies.remove('firstName')
+      Cookies.remove('userType')
 
       setIsLoggedIn(false)
+      setFirstName('')
+      setUserType('')
 
       navigate('/login')
     } catch (err) {
@@ -63,6 +72,8 @@ function App () {
         return 'Login'
       case '/register':
         return 'Register'
+      case '/clients':
+        return 'My Clients'
       default:
         return ''
     }
@@ -72,7 +83,7 @@ function App () {
 
   return (
     <div>
-      <Banner isLoggedIn={isLoggedIn} firstName={firstName} handleLogout={handleLogout} />
+      <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} />
       <div className='bg-slate-200'>
         <div className='bg-white max-w-3xl mx-auto py-6'>
           <h1 className='text-3xl font-bold text-gray-900 px-5'>{pageTitle}</h1>
@@ -83,6 +94,7 @@ function App () {
             <Route path='/calendar' element={<MyCalendar />} />
             <Route path='/login' element={<LoginForm handleLogin={handleLogin} />} />
             <Route path='/register' element={<RegisterForm />} />
+            <Route path='/clients' element={<Clients />} />
           </Routes>
         </div>
       </div>

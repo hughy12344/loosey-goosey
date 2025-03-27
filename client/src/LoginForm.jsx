@@ -25,9 +25,15 @@ const LoginForm = ({ handleLogin }) => {
       // Set cookies for 1 hour
       Cookies.set('userID', data.user._id, { expires: 1 / 24 })
       Cookies.set('firstName', data.user.firstName, { expires: 1 / 24 })
+      Cookies.set('userType', data.user.type, { expires: 1 / 24 })
 
-      handleLogin(data.user.firstName)
-      navigate('/calendar')
+      handleLogin(data.user.firstName, data.user.type)
+
+      if (data.user.type === 'client') {
+        navigate('/calendar')
+      } else {
+        navigate('/')
+      }
     }
   }
 
