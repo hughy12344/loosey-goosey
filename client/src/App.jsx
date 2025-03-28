@@ -92,6 +92,7 @@ function App () {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/calendar' element={<MyCalendar />} />
+            <Route path='/calendar/:userID' element={<MyCalendar />} />
             <Route path='/login' element={<LoginForm handleLogin={handleLogin} />} />
             <Route path='/register' element={<RegisterForm />} />
             <Route path='/clients' element={<Clients />} />

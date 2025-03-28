@@ -9,13 +9,11 @@ const ClientForm = ({addClient, handleCloseForm}) => {
         try {
             const response = await fetch(`http://localhost:8080/auth/getUserByEmail?email=${email}`)
             const data = await response.json()
-
             if (response.ok) {
                 const newClient = {
                     pracID: Cookies.get('userID'),
                     userID: data.userID
                 }
-
                 addClient(newClient)
             } else {
                 console.error('User not found', data.message)

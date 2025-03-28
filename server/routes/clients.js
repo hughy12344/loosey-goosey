@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
             userID
         })
 
-        await client.save()
+        await newClient.save()
         res.status(201).json(newClient)
     } catch (err) {
         res.status(400)
