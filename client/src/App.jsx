@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
-import MyCalendar from './Calendar'
+import CalendarPage from './CalendarPage'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import Banner from './Banner'
@@ -91,8 +91,8 @@ function App () {
         <div className='bg-white max-w-3xl mx-auto px-5'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/calendar' element={<MyCalendar />} />
-            <Route path='/calendar/:userID' element={<MyCalendar />} />
+            <Route path='/calendar' element={<CalendarPage />} />
+            <Route path='/calendar/:userID' element={<CalendarPage />} />
             <Route path='/login' element={<LoginForm handleLogin={handleLogin} />} />
             <Route path='/register' element={<RegisterForm />} />
             <Route path='/clients' element={<Clients />} />

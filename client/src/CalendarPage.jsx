@@ -9,7 +9,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localiser = momentLocalizer(moment)
 
-const MyCalendar = () => {
+const CalendarPage = () => {
   const { userID: urlUserID } = useParams()
   const [events, setEvents] = useState([])
   const [showForm, setShowForm] = useState(false)
@@ -198,4 +198,4 @@ const MyCalendar = () => {
   )
 }
 
-export default MyCalendar
+export default CalendarPage
