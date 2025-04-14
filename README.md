@@ -1,5 +1,6 @@
-Folder Structure
+#Folder Structure
 
+```
 ├── client
 │   ├── README.md
 │   ├── eslint.config.js
@@ -45,3 +46,4 @@ Folder Structure
     │   ├── auth.js
     │   └── clients.js
     └── server.js
+```
