@@ -38,7 +38,7 @@ const ClientsPage = () => {
                 </thead>
                 <tbody>
                     {clients.map(client => (
-                        <tr key={client.pracID}>
+                        <tr key={client._id}>
                             <td>{client.firstName}</td>
                             <td>{client.email}</td>
                             <td>

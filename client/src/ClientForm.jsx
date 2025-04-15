@@ -1,32 +1,25 @@
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import { getUserByEmail } from './api/authAPI'
 
-const ClientForm = ({addClient, handleCloseForm}) => {
+const ClientForm = ({handleAddClient, handleCloseForm}) => {
     const [email, setEmail] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const response = await fetch(`http://localhost:8080/auth/getUserByEmail?email=${email}`)
-            const data = await response.json()
-            if (response.ok) {
-                const newClient = {
-                    pracID: Cookies.get('userID'),
-                    userID: data.userID
-                }
-                addClient(newClient)
-            } else {
-                console.error('User not found', data.message)
-            }
-        } catch (err) {
-            console.error('Error fetching user ID', err)
+        const user = await getUserByEmail(email)
+        const newClient = {
+            pracID: Cookies.get('userID'),
+            userID: user.userID
         }
-      }
+        console.log(newClient)
+        handleAddClient(newClient)
+    }
     
-      const handleClose = (e) => {
+    const handleClose = (e) => {
         e.preventDefault()
         handleCloseForm()
-      }
+    }
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>

@@ -28,3 +28,17 @@ export const register = async (type, email, password, firstName) => {
       const data = await response.json()
       return data
 }
+
+export const getUserByEmail = async (email) => {
+    try {
+        const response = await fetch(`http://localhost:8080/auth/getUserByEmail?email=${email}`)
+        const data = await response.json()
+        if (response.ok) {
+            return data
+        } else {
+            console.error('User not found', data.message)
+        }
+    } catch (err) {
+        console.error('Error fetching user ID', err)
+    }
+}
