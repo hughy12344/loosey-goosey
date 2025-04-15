@@ -4,7 +4,7 @@ import moment from 'moment'
 
 const localiser = momentLocalizer(moment)
 
-const CalendarComponent = ({ exercises, handleEventClick }) => {
+const CalendarComponent = ({ exercises, handleExerciseClick }) => {
     const [currentDate, setCurrentDate] = useState(new Date())
     const [currentView, setCurrentView] = useState(Views.MONTH)
 
@@ -33,7 +33,7 @@ const CalendarComponent = ({ exercises, handleEventClick }) => {
         localizer={localiser}
         events={exercises}
         style={{ height: 500 }}
-        onSelectEvent={handleEventClick}
+        onSelectEvent={handleExerciseClick}
         views={['month', 'week', 'day', 'agenda']}
         view={currentView}
         onView={handleViewChange}

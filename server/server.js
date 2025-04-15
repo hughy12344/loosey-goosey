@@ -4,7 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
-const appointmentRouter = require('./routes/appointments')
+const exerciseRouter = require('./routes/exercises')
 const authRouter = require('./routes/auth')
 const clientRouter = require('./routes/clients')
 
@@ -23,7 +23,7 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to database'))
 
-app.use('/appointments', require('./middleware/auth'), appointmentRouter)
+app.use('/exercises', require('./middleware/auth'), exerciseRouter)
 app.use('/auth', authRouter)
 app.use('/clients', clientRouter)
 

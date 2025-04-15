@@ -1,29 +1,30 @@
 import moment from 'moment'
 
-const EventDetails = ({ selectedEvent, deleteAppointment, handleCloseEventDetails }) => {
+const ExerciseDetails = ({ selectedExercise, handleDeleteExercise, handleCloseExerciseDetails }) => {
   const handleDeleteClick = () => {
-    deleteAppointment(selectedEvent.id)
+    handleDeleteExercise(selectedExercise.id)
+    handleCloseExerciseDetails()
   }
 
-  if (!selectedEvent) return null
+  if (!selectedExercise) return null
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
       <div className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>
-        <h2 className='text-2xl font-bold text-gray-900 mb-5'>Appointment Details</h2>
+        <h2 className='text-2xl font-bold text-gray-900 mb-5'>Exercise Details</h2>
         <label className='block text-sm font-bold text-gray-900'>Title</label>
-        <p className='text-gray-900 text-sm mb-3'>{selectedEvent.title}</p>
+        <p className='text-gray-900 text-sm mb-3'>{selectedExercise.title}</p>
         <label className='block text-sm font-bold text-gray-900'>Start</label>
-        <p className='text-gray-900 text-sm mb-3'>{moment(selectedEvent.start).format('MMMM Do YYYY, h:mm:ss a')}</p>
+        <p className='text-gray-900 text-sm mb-3'>{moment(selectedExercise.start).format('MMMM Do YYYY, h:mm:ss a')}</p>
         <label className='block text-sm font-bold text-gray-900'>End</label>
-        <p className='text-gray-900 text-sm mb-3'>{moment(selectedEvent.end).format('MMMM Do YYYY, h:mm:ss a')}</p>
+        <p className='text-gray-900 text-sm mb-3'>{moment(selectedExercise.end).format('MMMM Do YYYY, h:mm:ss a')}</p>
         <button
           onClick={handleDeleteClick}
           className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
         >Delete
         </button>
         <button
-          onClick={handleCloseEventDetails}
+          onClick={handleCloseExerciseDetails}
           className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
         >Close
         </button>
@@ -32,4 +33,4 @@ const EventDetails = ({ selectedEvent, deleteAppointment, handleCloseEventDetail
   )
 }
 
-export default EventDetails
+export default ExerciseDetails

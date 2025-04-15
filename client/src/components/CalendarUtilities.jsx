@@ -1,12 +1,12 @@
 import { CalendarPlus2 } from 'lucide-react'
 
-const CalendarUtilities = ({ userType, firstName, handleOpenForm }) => {
+const CalendarUtilities = ({ userType, firstName, handleOpenExerciseForm }) => {
     return (
-        <div className="flex justify-between items-center bg-gray-300 rounded p-2 mb-5">
+        <div className="flex justify-between items-center bg-gray-100 rounded p-2 mb-5">
             {userType === 'client' && (
                 <CalendarPlus2
-                    onClick={handleOpenForm}
-                    className='text-white hover:text-black'
+                    onClick={handleOpenExerciseForm}
+                    className='text-gray-500 hover:text-gray-800'
                 />
             )}
             

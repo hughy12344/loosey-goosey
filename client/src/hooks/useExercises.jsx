@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useExercises = ( userID, userType, urlUserID ) => {
-    const [exercises, setExercises] = useState([])
+const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
     const [firstName, setFirstName] = useState('')
 
     useEffect(() => {
@@ -28,7 +27,7 @@ const useExercises = ( userID, userType, urlUserID ) => {
       useEffect(() => {
         const fetchExercises = async () => {
           try {
-            const response = await fetch('http://localhost:8080/appointments', {
+            const response = await fetch('http://localhost:8080/exercises', {
               headers: {
                 method: 'GET'
               },
@@ -43,7 +42,7 @@ const useExercises = ( userID, userType, urlUserID ) => {
                 start: new Date(exercise.start),
                 end: new Date(exercise.end)
               }))
-            setExercises(formattedExercisesForClient)
+              setExercises(formattedExercisesForClient)
             } else {
               const formattedExercisesForPrac = data.filter(exercise => exercise.userID === urlUserID)
               .map(exercise => ({
@@ -59,9 +58,9 @@ const useExercises = ( userID, userType, urlUserID ) => {
           }
         }
         fetchExercises()
-      }, [userID, userType, urlUserID])
+      }, [userID, userType, urlUserID, setExercises])
 
-    return { exercises, firstName }
+    return { firstName }
 }
 
 export default useExercises

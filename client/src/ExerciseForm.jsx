@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const ExerciseForm = ({ showForm, addAppointment, handleCloseForm, userID }) => {
+const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExerciseForm, userID }) => {
   // Abdominal workout is first option of dropdown (default)
   const [title, setTitle] = useState('Abdominal workout')
   const [start, setStart] = useState('')
@@ -10,18 +10,19 @@ const ExerciseForm = ({ showForm, addAppointment, handleCloseForm, userID }) => 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newAppointment = {
+    const newExercise = {
       title: isCustomTitle ? customTitle : title,
       start: new Date(start),
       end: new Date(end),
       userID
     }
-    addAppointment(newAppointment)
+    handleAddExercise(newExercise)
+    handleCloseExerciseForm()
   }
 
   const handleClose = (e) => {
     e.preventDefault()
-    handleCloseForm()
+    handleCloseExerciseForm()
   }
 
   const handleTitleChange = (e) => {
@@ -35,7 +36,7 @@ const ExerciseForm = ({ showForm, addAppointment, handleCloseForm, userID }) => 
     }
   }
 
-  if (!showForm) return null
+  if (!showExerciseForm) return null
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">

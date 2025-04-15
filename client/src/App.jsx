@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
-import CalendarPage from './CalendarPage'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
-import Banner from './Banner'
-import Home from './Home'
-import Clients from './Clients'
+import CalendarPage from './pages/CalendarPage'
+import LoginForm from './pages/LoginPage'
+import RegisterForm from './pages/RegisterPage'
+import Banner from './components/Banner'
+import Footer from './components/Footer'
+import Home from './pages/HomePage'
+import Clients from './pages/ClientsPage'
 import './App.css'
 
 function App () {
@@ -82,13 +83,11 @@ function App () {
   const pageTitle = getPageTitle(location.pathname)
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} />
-      <div className='bg-slate-200'>
-        <div className='bg-white max-w-3xl mx-auto py-6'>
-          <h1 className='text-3xl font-bold text-gray-900 px-5'>{pageTitle}</h1>
-        </div>
-        <div className='bg-white max-w-3xl mx-auto px-5'>
+      <div className='bg-slate-200 flex-1 flex items-center'>
+        <div className='bg-white max-w-3xl mx-auto px-5 flex-1 rounded-lg p-5'>
+          <h1 className='text-3xl font-bold text-gray-900 py-6'>{pageTitle}</h1>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/calendar' element={<CalendarPage />} />
@@ -99,6 +98,7 @@ function App () {
           </Routes>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

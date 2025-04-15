@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { register } from '../api/authAPI'
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
   const [type, setType] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -9,20 +12,18 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:8080/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ type, email, password, firstName })
-    })
+    try {
+      const data = await register(type, email, password, firstName)
 
-    const data = await response.json()
-    if (data.token) {
-      localStorage.setItem('token', data.token)
-      alert('Registration successful! You can now login.')
-    } else {
-      alert(data.error || 'Registration failed! Please try again.')
+      if (data.token) {
+        localStorage.setItem('token', data.token)
+        alert('Registration successful! You can now login.')
+        navigate('/login')
+      } else {
+        alert(data.error || 'Registration failed! Please try again.')
+      }
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -55,10 +56,17 @@ const RegisterForm = () => {
           <label htmlFor='userClient' className='block text-sm'>Client</label>
         </div>
       </fieldset>
+      <label htmlFor='registrationFirstName' className='block text-sm font-medium text-gray-900'>First Name</label>
+      <input
+        id='registrationFirstName'
+        value={firstName}
+        onChange={e => setFirstName(e.target.value)}
+        required
+        className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
+      />
       <label htmlFor='registrationEmail' className='block text-sm font-medium text-gray-900'>Email</label>
       <input
         id='registrationEmail'
-        placeholder='johnsmith@gmail.com'
         type='email'
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -74,15 +82,6 @@ const RegisterForm = () => {
         required
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
-      <label htmlFor='registrationFirstName' className='block text-sm font-medium text-gray-900'>First Name</label>
-      <input
-        id='registrationFirstName'
-        placeholder='John'
-        value={firstName}
-        onChange={e => setFirstName(e.target.value)}
-        required
-        className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
-      />
       <button
         type='submit'
         className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
@@ -90,7 +89,7 @@ const RegisterForm = () => {
         Register
       </button>
       <p className='block text-sm'>Already have an account? Login here:</p>
-      <a href='/login' className='text-sm hover:text-blue-500 hover:underline'>Login</a>
+      <a href='/login' className='text-sm text-blue-500 hover:text-blue-500 hover:underline'>Login</a>
     </form>
   )
 }

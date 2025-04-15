@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const appointmentSchema = new mongoose.Schema({
+const exerciseSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -19,4 +19,4 @@ const appointmentSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Appointment', appointmentSchema)
+module.exports = mongoose.model('Exercise', exerciseSchema)

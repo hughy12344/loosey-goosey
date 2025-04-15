@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { login } from '../api/authAPI'
 
 const LoginForm = ({ handleLogin }) => {
   const navigate = useNavigate()
@@ -9,31 +10,25 @@ const LoginForm = ({ handleLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    try{
+      const data = await login(email, password)
 
-    const response = await fetch('http://localhost:8080/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password }),
-      credentials: 'include'
-    })
-
-    const data = await response.json()
-
-    if (data.user) {
-      // Set cookies for 1 hour
-      Cookies.set('userID', data.user._id, { expires: 1 / 24 })
-      Cookies.set('firstName', data.user.firstName, { expires: 1 / 24 })
-      Cookies.set('userType', data.user.type, { expires: 1 / 24 })
-
-      handleLogin(data.user.firstName, data.user.type)
-
-      if (data.user.type === 'client') {
-        navigate('/calendar')
-      } else {
-        navigate('/')
+      if (data.user) {
+        // Set cookies for 1 hour
+        Cookies.set('userID', data.user._id, { expires: 1 / 24 })
+        Cookies.set('firstName', data.user.firstName, { expires: 1 / 24 })
+        Cookies.set('userType', data.user.type, { expires: 1 / 24 })
+  
+        handleLogin(data.user.firstName, data.user.type)
+  
+        if (data.user.type === 'client') {
+          navigate('/calendar')
+        } else {
+          navigate('/clients')
+        }
       }
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -43,7 +38,6 @@ const LoginForm = ({ handleLogin }) => {
       <input
         id='email'
         name='email'
-        placeholder='johnsmith@gmail.com'
         type='email'
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -67,7 +61,7 @@ const LoginForm = ({ handleLogin }) => {
         Login
       </button>
       <p className='block text-sm'>No account? Register here: </p>
-      <a className='text-sm hover:text-blue-500 hover:underline' href='/register'>Register</a>
+      <a className='text-sm text-blue-500 hover:text-blue-500 hover:underline' href='/register'>Register</a>
     </form>
   )
 }
