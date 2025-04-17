@@ -9,9 +9,9 @@ const authRouter = require('./routes/auth')
 const clientRouter = require('./routes/clients')
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
-    credentials: true,
-};
+  origin: 'http://localhost:5173',
+  credentials: true
+}
 
 const app = express()
 app.use(express.json())

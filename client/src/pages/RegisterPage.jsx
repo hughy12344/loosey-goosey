@@ -32,7 +32,7 @@ const RegisterForm = () => {
       <fieldset>
         <legend className='block text-sm font-medium text-gray-900'>User type</legend>
         <div className='flex items-center gap-x-6'>
-          <input 
+          <input
             id='userPractitioner'
             name='radioUser'
             type='radio'
@@ -44,7 +44,7 @@ const RegisterForm = () => {
           <label htmlFor='userPractitioner' className='block text-sm'>Practitioner</label>
         </div>
         <div className='flex items-center gap-x-6 mb-3'>
-          <input 
+          <input
             id='userClient'
             name='radioUser'
             type='radio'

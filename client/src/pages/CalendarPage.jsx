@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Calendar from '../components/Calendar'
 import useExercises from '../hooks/useExercises'
-import ExerciseForm from '../ExerciseForm'
-import ExerciseDetails from '../ExerciseDetails'
+import ExerciseForm from '../components/ExerciseForm'
+import ExerciseDetails from '../components/ExerciseDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import CalendarUtilities from '../components/CalendarUtilities'
 import useExercisesManagement from '../hooks/useExercisesManagement'
-
 
 const CalendarPage = () => {
   const { userID: urlUserID } = useParams()
@@ -17,12 +16,12 @@ const CalendarPage = () => {
   const userID = urlUserID || Cookies.get('userID')
   const userType = Cookies.get('userType')
 
-  //Import exercise management functions and state
-  const { exercises, setExercises, handleAddExercise, handleDeleteExercise} = useExercisesManagement()
-  //Import user's name and exercises from DB
-  const { firstName} = useExercises({ userID, userType, urlUserID, setExercises })
+  // Import exercise management functions and state
+  const { exercises, setExercises, handleAddExercise, handleDeleteExercise } = useExercisesManagement()
+  // Import user's name and exercises from DB
+  const { firstName } = useExercises({ userID, userType, urlUserID, setExercises })
 
-  //Handle opening and closing the add exercise form
+  // Handle opening and closing the add exercise form
   const handleOpenExerciseForm = () => setShowExerciseForm(true)
   const handleCloseExerciseForm = () => setShowExerciseForm(false)
 
@@ -36,7 +35,7 @@ const CalendarPage = () => {
         firstName={firstName}
         handleOpenExerciseForm={handleOpenExerciseForm}
       />
-    
+
       <ExerciseForm
         showExerciseForm={showExerciseForm}
         handleAddExercise={handleAddExercise}
@@ -44,7 +43,7 @@ const CalendarPage = () => {
         userID={userID}
       />
 
-      <Calendar 
+      <Calendar
         exercises={exercises}
         handleExerciseClick={handleExerciseClick}
       />

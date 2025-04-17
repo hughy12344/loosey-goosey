@@ -10,7 +10,7 @@ const LoginForm = ({ handleLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try{
+    try {
       const data = await login(email, password)
 
       if (data.user) {
@@ -18,9 +18,9 @@ const LoginForm = ({ handleLogin }) => {
         Cookies.set('userID', data.user._id, { expires: 1 / 24 })
         Cookies.set('firstName', data.user.firstName, { expires: 1 / 24 })
         Cookies.set('userType', data.user.type, { expires: 1 / 24 })
-  
+
         handleLogin(data.user.firstName, data.user.type)
-  
+
         if (data.user.type === 'client') {
           navigate('/calendar')
         } else {

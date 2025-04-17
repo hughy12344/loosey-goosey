@@ -7,7 +7,7 @@ const clientSchema = new mongoose.Schema({
   },
   userID: {
     type: String,
-    required: true,
+    required: true
   }
 })
 
