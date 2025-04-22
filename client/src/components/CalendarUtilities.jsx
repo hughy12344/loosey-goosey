@@ -1,9 +1,9 @@
-//Import libraries
+// Import libraries
 import { CalendarPlus2 } from 'lucide-react'
 
 const CalendarUtilities = ({ userType, firstName, handleOpenExerciseForm }) => {
   return (
-    //Main div wrapper with flex style, gray background, and padding
+    // Main div wrapper with flex style, gray background, and padding
     <div className='flex justify-between items-center bg-gray-100 rounded p-2 mb-5'>
       {/* If user is a client, show button to add an exercise */}
       {userType === 'client' && (

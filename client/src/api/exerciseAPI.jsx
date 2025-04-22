@@ -1,4 +1,4 @@
-//Adds new exercise record to the backend database
+// Adds new exercise record to the backend database
 export const addExercise = async (exercise) => {
   try {
     const response = await fetch('http://localhost:8080/exercises', {
@@ -16,7 +16,7 @@ export const addExercise = async (exercise) => {
   }
 }
 
-//Deletes an existing exercise record from the backend database
+// Deletes an existing exercise record from the backend database
 export const deleteExercise = async (exerciseId) => {
   try {
     await fetch(`http://localhost:8080/exercises/${exerciseId}`, {

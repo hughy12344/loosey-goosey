@@ -1,3 +1,4 @@
+// Import libraries and components
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -18,24 +19,27 @@ const CalendarPage = () => {
 
   // Import exercise management functions and state
   const { exercises, setExercises, handleAddExercise, handleDeleteExercise } = useExercisesManagement()
-  // Import user's name and exercises from DB
+  // Import client's first name (for prac view) and exercises from DB
   const { firstName } = useExercises({ userID, userType, urlUserID, setExercises })
 
   // Handle opening and closing the add exercise form
   const handleOpenExerciseForm = () => setShowExerciseForm(true)
   const handleCloseExerciseForm = () => setShowExerciseForm(false)
 
+  // Handle clicking an exercise on the calendar and closing the exercise details pane
   const handleExerciseClick = (exercise) => setSelectedExercise(exercise)
   const handleCloseExerciseDetails = () => setSelectedExercise(null)
 
   return (
     <div>
+      {/* Utilities bar for calendar */}
       <CalendarUtilities
         userType={userType}
         firstName={firstName}
         handleOpenExerciseForm={handleOpenExerciseForm}
       />
 
+      {/* Exercise form popup component when adding a new exercise */}
       <ExerciseForm
         showExerciseForm={showExerciseForm}
         handleAddExercise={handleAddExercise}
@@ -43,15 +47,17 @@ const CalendarPage = () => {
         userID={userID}
       />
 
-      <Calendar
-        exercises={exercises}
-        handleExerciseClick={handleExerciseClick}
-      />
-
+      {/* Exercise details popup component when clicking on an existing exercise */}
       <ExerciseDetails
         selectedExercise={selectedExercise}
         handleDeleteExercise={handleDeleteExercise}
         handleCloseExerciseDetails={handleCloseExerciseDetails}
+      />
+
+      {/* Calendar component */}
+      <Calendar
+        exercises={exercises}
+        handleExerciseClick={handleExerciseClick}
       />
     </div>
   )

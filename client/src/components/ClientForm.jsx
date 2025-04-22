@@ -1,13 +1,13 @@
-//Import libraries and functions
+// Import libraries and functions
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 import { getUserByEmail } from '../api/authAPI'
 
 const ClientForm = ({ handleAddClient, handleCloseForm }) => {
-  //State variable for client email
+  // State variable for client email
   const [email, setEmail] = useState('')
 
-  //Handles the submission of a new client assignment to a practitioner
+  // Handles the submission of a new client assignment to a practitioner
   const handleSubmit = async (e) => {
     e.preventDefault()
     const user = await getUserByEmail(email)
@@ -19,14 +19,14 @@ const ClientForm = ({ handleAddClient, handleCloseForm }) => {
     handleAddClient(newClient)
   }
 
-  //Handles the close button on the form
+  // Handles the close button on the form
   const handleClose = (e) => {
     e.preventDefault()
     handleCloseForm()
   }
 
   return (
-    //Main form wrapper that handles submission and uses a flex style with a white background
+    // Main form wrapper that handles submission and uses a flex style with a white background
     <form onSubmit={handleSubmit} className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>
       {/* Form title */}
       <h2 className='text-2xl font-bold text-gray-900 mb-5'>Add New Client</h2>

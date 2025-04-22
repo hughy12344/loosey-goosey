@@ -1,4 +1,4 @@
-//Import library
+// Import library
 import { useState } from 'react'
 
 const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExerciseForm, userID }) => {
@@ -10,7 +10,7 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
   const [customTitle, setCustomTitle] = useState('')
   const [isCustomTitle, setIsCustomTitle] = useState(false)
 
-  //Handle submission of new exercise
+  // Handle submission of new exercise
   const handleSubmit = (e) => {
     e.preventDefault()
     const newExercise = {
@@ -23,13 +23,13 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
     handleCloseExerciseForm()
   }
 
-  //Handle closure of exercise form
+  // Handle closure of exercise form
   const handleClose = (e) => {
     e.preventDefault()
     handleCloseExerciseForm()
   }
 
-  //Handle title change and custom title state
+  // Handle title change and custom title state
   const handleTitleChange = (e) => {
     const value = e.target.value
     if (value === 'Custom') {
@@ -41,11 +41,11 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
     }
   }
 
-  //If showExerciseForm state is false, dont render this component
+  // If showExerciseForm state is false, dont render this component
   if (!showExerciseForm) return null
 
   return (
-    //Overlay background that dims the rest of the UI
+    // Overlay background that dims the rest of the UI
     <div className='fixed inset-0 bg-black/50 z-50 flex justify-center items-center'>
       {/* Modal container */}
       <form onSubmit={handleSubmit} className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>
@@ -66,7 +66,7 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
           <option value='Walk'>Walk</option>
           <option value='Custom'>Custom</option>
         </select>
-        {/* Custom title input if 'Custom' is selected*/}
+        {/* Custom title input if 'Custom' is selected */}
         {isCustomTitle && (
           <input
             type='text'
@@ -97,7 +97,7 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
           required
           className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
         />
-        {/* Submit button*/}
+        {/* Submit button */}
         <button
           type='submit'
           className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'

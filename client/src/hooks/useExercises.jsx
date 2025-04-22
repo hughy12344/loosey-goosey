@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   const [firstName, setFirstName] = useState('')
 
+  // Custom hook that fetches client's first name for practitioner view of calendar
   useEffect(() => {
     if (userType === 'practitioner') {
       const fetchClientData = async () => {
@@ -24,6 +25,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
     }
   }, [userID, userType])
 
+  // Custom hook that fetches user's exercises to populate the calendar
   useEffect(() => {
     const fetchExercises = async () => {
       try {

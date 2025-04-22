@@ -1,4 +1,4 @@
-//Send's email and password to backend database for user authentication
+// Send's email and password to backend database for user authentication
 export const login = async (email, password) => {
   const response = await fetch('http://localhost:8080/auth/login', {
     method: 'POST',
@@ -17,7 +17,7 @@ export const login = async (email, password) => {
   return data
 }
 
-//Sends user type, email, password and name to backend database for user creation
+// Sends user type, email, password and name to backend database for user creation
 export const register = async (type, email, password, firstName) => {
   const response = await fetch('http://localhost:8080/auth/register', {
     method: 'POST',
@@ -31,7 +31,7 @@ export const register = async (type, email, password, firstName) => {
   return data
 }
 
-//Fetches user ID from backend database for assigning clients to practitioners
+// Fetches user ID from backend database for assigning clients to practitioners
 export const getUserByEmail = async (email) => {
   try {
     const response = await fetch(`http://localhost:8080/auth/getUserByEmail?email=${email}`)

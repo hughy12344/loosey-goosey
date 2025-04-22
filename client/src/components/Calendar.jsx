@@ -1,22 +1,22 @@
-//Import libraries
+// Import libraries
 import { useState } from 'react'
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 
-//Instantiate localiser to gather user's local time/date 
+// Instantiate localiser to gather user's local time/date
 const localiser = momentLocalizer(moment)
 
 const CalendarComponent = ({ exercises, handleExerciseClick }) => {
-  //State variables for the calendar's current date and view
+  // State variables for the calendar's current date and view
   const [currentDate, setCurrentDate] = useState(new Date())
   const [currentView, setCurrentView] = useState(Views.MONTH)
 
-  //Changes state of calendar's current view
+  // Changes state of calendar's current view
   const handleViewChange = (view) => {
     setCurrentView(view)
   }
 
-  //Handle's calendar navigation buttons (PREV, NEXT, TODAY)
+  // Handle's calendar navigation buttons (PREV, NEXT, TODAY)
   const handleNavigate = (date, view, action) => {
     switch (action) {
       case 'PREV':
@@ -34,7 +34,7 @@ const CalendarComponent = ({ exercises, handleExerciseClick }) => {
   }
 
   return (
-    //Calendar component from react-big-calendar with custom localiser, events, views and navigation
+    // Calendar component from react-big-calendar with custom localiser, events, views and navigation
     <Calendar
       localizer={localiser}
       events={exercises}

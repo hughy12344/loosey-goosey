@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+// Custom hook to fetch clients assigned to logged in practitioner
 const useClients = ({ setClients, userID }) => {
   useEffect(() => {
     const fetchClients = async () => {

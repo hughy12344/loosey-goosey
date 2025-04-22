@@ -24,6 +24,7 @@ const useExercisesManagement = (initialExercises = []) => {
     }
   }
 
+  // Return the exercises and set / handle add / handle delete functions for exercises
   return {
     exercises,
     setExercises,

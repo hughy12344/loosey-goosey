@@ -1,20 +1,27 @@
+// Import libraries and API
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../api/authAPI'
 
 const RegisterForm = () => {
+  // Import navigate function for changing URL path
   const navigate = useNavigate()
+
+  // Insantiate user type, email, password and first name state variables
   const [type, setType] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
 
+  // Handler for register button
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
+      // Pass data to register API function
       const data = await register(type, email, password, firstName)
 
+      // If registration is successful, notify and navigate user to login
       if (data.token) {
         localStorage.setItem('token', data.token)
         alert('Registration successful! You can now login.')
@@ -28,9 +35,12 @@ const RegisterForm = () => {
   }
 
   return (
+    // Registration form
     <form autoComplete='off' onSubmit={handleSubmit}>
+      {/* Fieldset for radio buttons of user type */}
       <fieldset>
         <legend className='block text-sm font-medium text-gray-900'>User type</legend>
+        {/* Practitioner radio button and label */}
         <div className='flex items-center gap-x-6'>
           <input
             id='userPractitioner'
@@ -43,6 +53,7 @@ const RegisterForm = () => {
           />
           <label htmlFor='userPractitioner' className='block text-sm'>Practitioner</label>
         </div>
+        {/* Client radio button and label */}
         <div className='flex items-center gap-x-6 mb-3'>
           <input
             id='userClient'
@@ -56,6 +67,7 @@ const RegisterForm = () => {
           <label htmlFor='userClient' className='block text-sm'>Client</label>
         </div>
       </fieldset>
+      {/* First name label and input */}
       <label htmlFor='registrationFirstName' className='block text-sm font-medium text-gray-900'>First Name</label>
       <input
         id='registrationFirstName'
@@ -64,6 +76,7 @@ const RegisterForm = () => {
         required
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
+      {/* Email label and input */}
       <label htmlFor='registrationEmail' className='block text-sm font-medium text-gray-900'>Email</label>
       <input
         id='registrationEmail'
@@ -73,6 +86,7 @@ const RegisterForm = () => {
         required
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
+      {/* Password label and input */}
       <label htmlFor='registrationPassword' className='block text-sm font-medium text-gray-900'>Password</label>
       <input
         id='registrationPassword'
@@ -82,12 +96,14 @@ const RegisterForm = () => {
         required
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-3'
       />
+      {/* Register button */}
       <button
         type='submit'
         className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
       >
         Register
       </button>
+      {/* Link to login page */}
       <p className='block text-sm'>Already have an account? Login here:</p>
       <a href='/login' className='text-sm text-blue-500 hover:text-blue-500 hover:underline'>Login</a>
     </form>

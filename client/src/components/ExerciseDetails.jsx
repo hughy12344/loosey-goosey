@@ -1,18 +1,18 @@
-//Import library
+// Import library
 import moment from 'moment'
 
 const ExerciseDetails = ({ selectedExercise, handleDeleteExercise, handleCloseExerciseDetails }) => {
-  //Handles the delete exercise button
+  // Handles the delete exercise button
   const handleDeleteClick = () => {
     handleDeleteExercise(selectedExercise.id)
     handleCloseExerciseDetails()
   }
 
-  //If no exercise is selected, do not render this component
+  // If no exercise is selected, do not render this component
   if (!selectedExercise) return null
 
   return (
-    //Overlay background that dims the rest of the UI
+    // Overlay background that dims the rest of the UI
     <div className='fixed inset-0 bg-black/50 z-50 flex justify-center items-center'>
       {/* Modal container */}
       <div className='flex flex-col bg-white p-5 rounded-lg max-w-sm shadow-lg'>
