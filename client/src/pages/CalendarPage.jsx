@@ -11,9 +11,14 @@ import CalendarUtilities from '../components/CalendarUtilities'
 import useExercisesManagement from '../hooks/useExercisesManagement'
 
 const CalendarPage = () => {
+  // Grab user ID from URL for prac view of client calendar
   const { userID: urlUserID } = useParams()
+  
+  // State variables for showing exercise form and selected exercise
   const [showExerciseForm, setShowExerciseForm] = useState(false)
   const [selectedExercise, setSelectedExercise] = useState(null)
+
+  // Grab user ID and type from cookies
   const userID = urlUserID || Cookies.get('userID')
   const userType = Cookies.get('userType')
 
