@@ -13,6 +13,10 @@ const appointmentSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  notes: {
+    type: String,
+    required: false
+  },
   userID: {
     type: String,
     required: true
