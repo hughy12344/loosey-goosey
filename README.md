@@ -2,6 +2,7 @@ Folder Structure
 
 ```
 .
+├── README.md
 ├── client
 │   ├── README.md
 │   ├── eslint.config.js
@@ -13,9 +14,6 @@ Folder Structure
 │   ├── src
 │   │   ├── App.css
 │   │   ├── App.jsx
-│   │   ├── ClientForm.jsx
-│   │   ├── ExerciseDetails.jsx
-│   │   ├── ExerciseForm.jsx
 │   │   ├── api
 │   │   │   ├── authAPI.jsx
 │   │   │   ├── clientAPI.jsx
@@ -24,6 +22,9 @@ Folder Structure
 │   │   │   ├── Banner.jsx
 │   │   │   ├── Calendar.jsx
 │   │   │   ├── CalendarUtilities.jsx
+│   │   │   ├── ClientForm.jsx
+│   │   │   ├── ExerciseDetails.jsx
+│   │   │   ├── ExerciseForm.jsx
 │   │   │   └── Footer.jsx
 │   │   ├── hooks
 │   │   │   ├── useClients.jsx
