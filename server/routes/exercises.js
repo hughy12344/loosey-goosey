@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     start: req.body.start,
     end: req.body.end,
+    notes: req.body.notes,
     userID: req.body.userID
   })
   try {

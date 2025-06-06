@@ -9,6 +9,7 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
   const [end, setEnd] = useState('')
   const [customTitle, setCustomTitle] = useState('')
   const [isCustomTitle, setIsCustomTitle] = useState(false)
+  const [notes, setNotes] = useState('')
 
   // Handle submission of new exercise
   const handleSubmit = (e) => {
@@ -17,7 +18,8 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
       title: isCustomTitle ? customTitle : title,
       start: new Date(start),
       end: new Date(end),
-      userID
+      notes: notes,
+      userID: userID
     }
     handleAddExercise(newExercise)
     handleCloseExerciseForm()
@@ -95,6 +97,14 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
           value={end}
           onChange={(e) => setEnd(e.target.value)}
           required
+          className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
+        />
+        {/* Notes label and input */}
+        <label htmlFor='formNotes' className='block text-sm font-medium text-gray-900'>Notes (optional)</label>
+        <input
+          id='formNotes'
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
           className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
         />
         {/* Submit button */}

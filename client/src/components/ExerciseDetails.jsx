@@ -27,6 +27,9 @@ const ExerciseDetails = ({ selectedExercise, handleDeleteExercise, handleCloseEx
         {/* End date input and label */}
         <label className='block text-sm font-bold text-gray-900'>End</label>
         <p className='text-gray-900 text-sm mb-3'>{moment(selectedExercise.end).format('MMMM Do YYYY, h:mm:ss a')}</p>
+        {/* Notes input and label */}
+        <label className='block text-sm font-bold text-gray-900'>Notes</label>
+        <p className='text-gray-900 text-sm mb-3'>{selectedExercise.notes}</p>
         {/* Delete button */}
         <button
           onClick={handleDeleteClick}
