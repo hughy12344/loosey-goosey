@@ -4,7 +4,7 @@ Loosey-Goosey is an intuitive app designed to help users monitor and enhance the
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue)
 
-[Deployment]: https://loosey-goosey.vercel.app/
+Deployment: https://loosey-goosey.vercel.app/
 
 
 ## Table of Contents
