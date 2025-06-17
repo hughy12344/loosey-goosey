@@ -37,7 +37,13 @@ export const register = async (type, email, password, firstName) => {
 // Fetches user ID from backend database for assigning clients to practitioners
 export const getUserByEmail = async (email) => {
   try {
-    const response = await fetch(`${apiBase}/auth/getUserByEmail?email=${email}`)
+    const response = await fetch(`${apiBase}/auth/getUserByEmail?email=${email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
     const data = await response.json()
     if (response.ok) {
       return data

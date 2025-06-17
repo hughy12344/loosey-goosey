@@ -84,7 +84,7 @@ router.post(
 
       res.cookie('token', token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV,
         maxAge: 60 * 60 * 1000,
         sameSite: 'Lax'
       })
@@ -104,7 +104,7 @@ router.post(
   '/logout',
   async (req, res) => {
     try {
-      res.clearCookie('token', { httpOnly: true, secure: false, sameSite: 'Lax' })
+      res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Lax' })
       res.status(200).json({ message: 'Logged out successfully' })
     } catch (err) {
       console.error(err)

@@ -33,8 +33,9 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
     const fetchExercises = async () => {
       try {
         const response = await fetch(`${apiBase}/exercises`, {
+          method: 'GET',
           headers: {
-            method: 'GET'
+              'Content-Type': 'application/json'
           },
           credentials: 'include'
         })

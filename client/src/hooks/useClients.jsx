@@ -9,8 +9,9 @@ const useClients = ({ setClients, userID }) => {
     const fetchClients = async () => {
       try {
         const response = await fetch(`${apiBase}/clients`, {
+          method: 'GET',
           headers: {
-            method: 'GET'
+            'Content-Type': 'application/json'
           },
           credentials: 'include'
         })
