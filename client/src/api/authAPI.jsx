@@ -1,6 +1,9 @@
+//Backend URL path
+const apiBase = import.meta.env.VITE_API_URL;
+
 // Send's email and password to backend database for user authentication
 export const login = async (email, password) => {
-  const response = await fetch('http://localhost:8080/auth/login', {
+  const response = await fetch(`${apiBase}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -19,7 +22,7 @@ export const login = async (email, password) => {
 
 // Sends user type, email, password and name to backend database for user creation
 export const register = async (type, email, password, firstName) => {
-  const response = await fetch('http://localhost:8080/auth/register', {
+  const response = await fetch(`${apiBase}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -34,7 +37,7 @@ export const register = async (type, email, password, firstName) => {
 // Fetches user ID from backend database for assigning clients to practitioners
 export const getUserByEmail = async (email) => {
   try {
-    const response = await fetch(`http://localhost:8080/auth/getUserByEmail?email=${email}`)
+    const response = await fetch(`${apiBase}/auth/getUserByEmail?email=${email}`)
     const data = await response.json()
     if (response.ok) {
       return data

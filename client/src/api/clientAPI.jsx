@@ -1,7 +1,10 @@
+//Backend URL path
+const apiBase = import.meta.env.VITE_API_URL;
+
 // Assigns a new client to a practitioner in the backend database
 export const addClient = async (client) => {
   try {
-    const response = await fetch('http://localhost:8080/clients', {
+    const response = await fetch(`${apiBase}/clients`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
