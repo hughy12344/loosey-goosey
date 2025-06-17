@@ -14,16 +14,15 @@ const CalendarPage = () => {
   // Grab user ID from URL for prac view of client calendar
   const { userID: urlUserID } = useParams()
   
-  // State variables for showing exercise form and selected exercise
+  // State variables for showing exercise form
   const [showExerciseForm, setShowExerciseForm] = useState(false)
-  const [selectedExercise, setSelectedExercise] = useState(null)
 
   // Grab user ID and type from cookies
   const userID = urlUserID || Cookies.get('userID')
   const userType = Cookies.get('userType')
 
   // Import exercise management functions and state
-  const { exercises, setExercises, handleAddExercise, handleDeleteExercise } = useExercisesManagement()
+  const { exercises, setExercises, selectedExercise, setSelectedExercise, handleAddExercise, handleDeleteExercise, handleAddComment } = useExercisesManagement()
   // Import client's first name (for prac view) and exercises from DB
   const { firstName } = useExercises({ userID, userType, urlUserID, setExercises })
 
@@ -57,6 +56,8 @@ const CalendarPage = () => {
         selectedExercise={selectedExercise}
         handleDeleteExercise={handleDeleteExercise}
         handleCloseExerciseDetails={handleCloseExerciseDetails}
+        handleAddComment={handleAddComment}
+        userType={userType}
       />
 
       {/* Calendar component */}

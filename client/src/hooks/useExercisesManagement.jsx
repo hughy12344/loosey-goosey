@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { addExercise, deleteExercise } from '../api/exerciseAPI'
+import { addExercise, deleteExercise, addComment } from '../api/exerciseAPI'
 
 const useExercisesManagement = (initialExercises = []) => {
   const [exercises, setExercises] = useState(initialExercises)
+  const [selectedExercise, setSelectedExercise] = useState(null)
 
   // Handle add exercise button within the exercise form
   const handleAddExercise = async (exercise) => {
@@ -24,12 +25,25 @@ const useExercisesManagement = (initialExercises = []) => {
     }
   }
 
+  const handleAddComment = async (comment) => {
+    try {
+      const newComment = await addComment(comment, selectedExercise.id)
+      console.log(newComment)
+      setSelectedExercise(newComment)
+    } catch (err) {
+      console.error('Error adding comment: ', err)
+    }
+  }
+
   // Return the exercises and set / handle add / handle delete functions for exercises
   return {
     exercises,
     setExercises,
+    selectedExercise,
+    setSelectedExercise,
     handleAddExercise,
-    handleDeleteExercise
+    handleDeleteExercise,
+    handleAddComment
   }
 }
 

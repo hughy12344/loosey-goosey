@@ -17,6 +17,10 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  comment: {
+    type: String,
+    required: false
+  },
   userID: {
     type: String,
     required: true

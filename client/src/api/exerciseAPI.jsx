@@ -28,3 +28,21 @@ export const deleteExercise = async (exerciseId) => {
     throw err
   }
 }
+
+// Adds a comment to an existing exercise record in the backend database
+export const addComment = async (comment, id) => {
+  try {
+    const response = await fetch(`http://localhost:8080/exercises/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(comment),
+      credentials: 'include'
+    })
+    return await response.json();
+  } catch (err) {
+    console.error('Error adding comment: ', err)
+    throw err
+  }
+}

@@ -107,7 +107,7 @@ function App () {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/calendar' element={<CalendarPage />} />
-            <Route path='/calendar/:userID' element={<CalendarPage />} />
+            <Route path='/calendar/:userID' element={<CalendarPage/>} />
             <Route path='/login' element={<LoginForm handleLogin={handleLogin} />} />
             <Route path='/register' element={<RegisterForm />} />
             <Route path='/clients' element={<Clients />} />

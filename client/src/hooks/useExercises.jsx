@@ -43,7 +43,8 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               title: exercise.title,
               start: new Date(exercise.start),
               end: new Date(exercise.end),
-              notes: exercise.notes
+              notes: exercise.notes,
+              comment: exercise.comment
             }))
           setExercises(formattedExercisesForClient)
         } else {
@@ -53,7 +54,8 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               title: exercise.title,
               start: new Date(exercise.start),
               end: new Date(exercise.end),
-              notes: exercise.notes
+              notes: exercise.notes,
+              comment: exercise.comment
             }))
           setExercises(formattedExercisesForPrac)
         }
