@@ -9,7 +9,7 @@ const authRouter = require('./routes/auth')
 const clientRouter = require('./routes/clients')
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://loosey-goosey.vercel.app/',
   credentials: true
 }
 
