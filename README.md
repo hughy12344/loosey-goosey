@@ -1,6 +1,26 @@
-Deployed at: https://loosey-goosey.vercel.app/
+# Loosey-Goosey
 
-Folder Structure
+Loosey-Goosey is an intuitive app designed to help users monitor and enhance their physiological exercise routines. It features a calendar for tracking health history and scheduling workouts. With dedicated views for both clients and practitioners, Loosey-Goosey facilitates seamless collaboration and planning between practitioners and their clients.
+
+[Deployment]: https://loosey-goosey.vercel.app/
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue)
+
+
+## Table of Contents
+ - [Installation] (#installation)
+ - [Usage] (#usage)
+ - [Features] (#features)
+ - [Folder Structure] (#folder structure)
+ - [License] (#license)
+ - [Contact] (#contact)
+
+## Installation
+
+## Usage
+
+## Features
+
+## Folder Structure
 
 ```
 .
@@ -56,3 +76,10 @@ Folder Structure
     │   └── exercises.js
     └── server.js
 ```
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+Created by Hugh Cameron - Please feel free to reach out!
+Email: hugh.cameron102@gmail.com
