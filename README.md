@@ -2,8 +2,9 @@
 
 Loosey-Goosey is an intuitive app designed to help users monitor and enhance their physiological exercise routines. It features a calendar for tracking health history and scheduling workouts. With dedicated views for both clients and practitioners, Loosey-Goosey facilitates seamless collaboration and planning between practitioners and their clients.
 
-[Deployment]: https://loosey-goosey.vercel.app/
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue)
+
+[Deployment]: https://loosey-goosey.vercel.app/
 
 
 ## Table of Contents
