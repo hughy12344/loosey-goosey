@@ -1,11 +1,14 @@
 import { useEffect } from 'react'
 
+//Backend URL path
+const apiBase = import.meta.env.VITE_API_URL;
+
 // Custom hook to fetch clients assigned to logged in practitioner
 const useClients = ({ setClients, userID }) => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await fetch('http://localhost:8080/clients', {
+        const response = await fetch(`${apiBase}/clients`, {
           headers: {
             method: 'GET'
           },
@@ -15,7 +18,7 @@ const useClients = ({ setClients, userID }) => {
         const filteredClients = data.filter(clients => clients.pracID === userID)
 
         const filteredClientDetails = await Promise.all(filteredClients.map(async (client) => {
-          const userResponse = await fetch(`http://localhost:8080/auth/${client.userID}`, {
+          const userResponse = await fetch(`${apiBase}/auth/${client.userID}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'

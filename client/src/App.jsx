@@ -12,6 +12,9 @@ import Clients from './pages/ClientsPage'
 import './App.css'
 
 function App () {
+  //Backend URL path
+  const apiBase = import.meta.env.VITE_API_URL;
+
   // Navigate feature from react-router-dom to render page based on URL path
   const navigate = useNavigate()
 
@@ -49,7 +52,7 @@ function App () {
   // Handles logout action, removes cookies and redirects user
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:8080/auth/logout', {
+      const response = await fetch(`${apiBase}/auth/logout`, {
         method: 'POST',
         credentials: 'include'
       })

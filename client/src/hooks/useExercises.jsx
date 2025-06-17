@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 
+//Backend URL path
+const apiBase = import.meta.env.VITE_API_URL;
+
 const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   const [firstName, setFirstName] = useState('')
 
@@ -8,7 +11,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
     if (userType === 'practitioner') {
       const fetchClientData = async () => {
         try {
-          const response = await fetch(`http://localhost:8080/auth/${userID}`, {
+          const response = await fetch(`${apiBase}/auth/${userID}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -29,7 +32,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   useEffect(() => {
     const fetchExercises = async () => {
       try {
-        const response = await fetch('http://localhost:8080/exercises', {
+        const response = await fetch(`${apiBase}/exercises`, {
           headers: {
             method: 'GET'
           },
