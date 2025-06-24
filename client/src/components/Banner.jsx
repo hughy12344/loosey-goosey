@@ -18,10 +18,10 @@ const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => 
           {/* Show calendar link if user is a client and logged in */}
           {isLoggedIn && userType === 'client' && <div className='flex gap-4'>
               <Link to='/calendar' className={`pb-1 border-b-2 ${location.pathname === '/calendar' ? 'border-white' : 'border-transparent'}`}>
-                <CalendarDays href='/calendar' className='text-white' />
+                <CalendarDays href='/calendar' className={location.pathname === '/calendar' ? 'text-white' : 'text-gray-500'} />
               </Link>
               <Link to='/exercises' className={`pb-1 border-b-2 ${location.pathname === '/exercises' ? 'border-white' : 'border-transparent'}`}>
-                <List href='/exercises' className='text-white' />
+                <List href='/exercises' className={location.pathname === '/exercises' ? 'text-white' : 'text-gray-500'} />
               </Link>
             </div>  
           }
