@@ -21,6 +21,7 @@ const ExercisesPage = () => {
         <table className='w-full text-left'>
             <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Title</th>
                     <th>Start</th>
                     <th>End</th>
@@ -31,9 +32,10 @@ const ExercisesPage = () => {
             <tbody>
                 {exercises.map(exercise => (
                 <tr key={exercise.id}>
+                    <td>{moment(exercise.start).format('MMMM Do YYYY')}</td>
                     <td>{exercise.title}</td>
-                    <td>{moment(exercise.start).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                    <td>{moment(exercise.end).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                    <td>{moment(exercise.start).format('h:mm:ss a')}</td>
+                    <td>{moment(exercise.end).format('h:mm:ss a')}</td>
                     <td>{exercise.notes}</td>
                     <td>{exercise.comment}</td>
                 </tr>
