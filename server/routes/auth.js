@@ -84,9 +84,9 @@ router.post(
 
       res.cookie('token', token, {
         httpOnly: true,
-        secure: false,
-        maxAge: 60 * 60 * 1000,
-        sameSite: 'Lax'
+        secure: process.env.NODE_ENV === 'production' ? true : false,
+        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+        maxAge: 60 * 60 * 1000
       })
 
       res.json({

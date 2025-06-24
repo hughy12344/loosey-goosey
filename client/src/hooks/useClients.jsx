@@ -6,8 +6,9 @@ const useClients = ({ setClients, userID }) => {
     const fetchClients = async () => {
       try {
         const response = await fetch('http://localhost:8080/clients', {
+          method: 'GET',
           headers: {
-            method: 'GET'
+            'Content-Type': 'application/json'
           },
           credentials: 'include'
         })

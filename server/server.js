@@ -27,5 +27,5 @@ app.use('/exercises', require('./middleware/auth'), exerciseRouter)
 app.use('/auth', authRouter)
 app.use('/clients', clientRouter)
 
-const PORT = process.env.PORT
-app.listen(8080, () => console.log(`Server started on port ${PORT}`))
+const PORT = process.env.PORT || 8080
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
