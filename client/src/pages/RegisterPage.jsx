@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../api/authAPI'
 
-const RegisterForm = () => {
+const RegisterPage = () => {
   // Import navigate function for changing URL path
   const navigate = useNavigate()
 
@@ -110,4 +110,4 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+export default RegisterPage

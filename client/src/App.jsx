@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import CalendarPage from './pages/CalendarPage'
-import LoginForm from './pages/LoginPage'
-import RegisterForm from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 import Banner from './components/Banner'
 import Footer from './components/Footer'
-import Home from './pages/HomePage'
-import Clients from './pages/ClientsPage'
+import HomePage from './pages/HomePage'
+import ClientsPage from './pages/ClientsPage'
+import ExercisesPage from './pages/ExercisesPage'
 import './App.css'
 
 function App () {
@@ -85,6 +86,8 @@ function App () {
         return 'Register'
       case '/clients':
         return 'My Clients'
+      case '/exercises':
+        return 'My Exercises'
       default:
         return ''
     }
@@ -96,7 +99,7 @@ function App () {
   return (
     // Main container for the app with a flex layout
     <div className='flex flex-col min-h-screen'>
-      <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} />
+      <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} location={location}/>
       {/* Main content area */}
       <div className='bg-slate-200 flex-1 flex items-center'>
         {/* Container for the page content */}
@@ -105,12 +108,13 @@ function App () {
           <h1 className='text-3xl font-bold text-gray-900 py-6'>{pageTitle}</h1>
           {/* Dynamically displayed content based on route path */}
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<HomePage />} />
             <Route path='/calendar' element={<CalendarPage />} />
             <Route path='/calendar/:userID' element={<CalendarPage/>} />
-            <Route path='/login' element={<LoginForm handleLogin={handleLogin} />} />
-            <Route path='/register' element={<RegisterForm />} />
-            <Route path='/clients' element={<Clients />} />
+            <Route path='/login' element={<LoginPage handleLogin={handleLogin} />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/clients' element={<ClientsPage />} />
+            <Route path='/exercises' element={<ExercisesPage />} />
           </Routes>
         </div>
       </div>

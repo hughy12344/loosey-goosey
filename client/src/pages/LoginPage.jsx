@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { login } from '../api/authAPI'
 
-const LoginForm = ({ handleLogin }) => {
+const LoginPage = ({ handleLogin }) => {
   // Import navigate function for changing URL path
   const navigate = useNavigate()
 
@@ -78,4 +78,4 @@ const LoginForm = ({ handleLogin }) => {
   )
 }
 
-export default LoginForm
+export default LoginPage

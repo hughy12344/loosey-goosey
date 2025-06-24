@@ -1,8 +1,8 @@
 // Import libraries
-import { CalendarDays, LogOut, Users } from 'lucide-react'
+import { CalendarDays, LogOut, Users, List } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const Banner = ({ isLoggedIn, firstName, userType, handleLogout }) => {
+const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => {
   return (
     // Main div wrapper with gray background
     <div className='bg-gray-800'>
@@ -14,12 +14,17 @@ const Banner = ({ isLoggedIn, firstName, userType, handleLogout }) => {
           </Link>
         </div>
         {/* Right side of the banner - Conditional links and user info */}
-        <div className='flex gap-4 items-center flex-shrink-0'>
+        <div className='flex gap-10 items-center flex-shrink-0'>
           {/* Show calendar link if user is a client and logged in */}
-          {isLoggedIn && userType === 'client' &&
-            <Link to='/calendar'>
-              <CalendarDays href='/calendar' className='text-white' />
-            </Link>}
+          {isLoggedIn && userType === 'client' && <div className='flex gap-4'>
+              <Link to='/calendar' className={`pb-1 border-b-2 ${location.pathname === '/calendar' ? 'border-white' : 'border-transparent'}`}>
+                <CalendarDays href='/calendar' className='text-white' />
+              </Link>
+              <Link to='/exercises' className={`pb-1 border-b-2 ${location.pathname === '/exercises' ? 'border-white' : 'border-transparent'}`}>
+                <List href='/exercises' className='text-white' />
+              </Link>
+            </div>  
+          }
           {/* Show clients link if user is a practitioner and logged in */}
           {isLoggedIn && userType === 'practitioner' &&
             <Link to='/clients'>
