@@ -1,5 +1,5 @@
 // Import libraries
-import { CalendarDays, LogOut, Users, List } from 'lucide-react'
+import { CalendarDays, LogOut, Users, List, HeartPulse } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => {
@@ -15,13 +15,16 @@ const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => 
         </div>
         {/* Right side of the banner - Conditional links and user info */}
         <div className='flex gap-10 items-center flex-shrink-0'>
-          {/* Show calendar link if user is a client and logged in */}
+          {/* Show calendar and exercises link if user is a client and logged in */}
           {isLoggedIn && userType === 'client' && <div className='flex gap-4'>
+              <Link to='/workouts' className={`pb-1 border-b-2 ${location.pathname === '/workouts' ? 'border-white' : 'border-transparent'}`}>
+                <HeartPulse href='/workouts' className={`hover:text-white ${location.pathname === '/workouts' ? 'text-white' : 'text-gray-500'}`} />
+              </Link>
               <Link to='/calendar' className={`pb-1 border-b-2 ${location.pathname === '/calendar' ? 'border-white' : 'border-transparent'}`}>
-                <CalendarDays href='/calendar' className={location.pathname === '/calendar' ? 'text-white' : 'text-gray-500'} />
+                <CalendarDays href='/calendar' className={`hover:text-white ${location.pathname === '/calendar' ? 'text-white' : 'text-gray-500'}`} />
               </Link>
               <Link to='/exercises' className={`pb-1 border-b-2 ${location.pathname === '/exercises' ? 'border-white' : 'border-transparent'}`}>
-                <List href='/exercises' className={location.pathname === '/exercises' ? 'text-white' : 'text-gray-500'} />
+                <List href='/exercises' className={`hover:text-white ${location.pathname === '/exercises' ? 'text-white' : 'text-gray-500'}`} />
               </Link>
             </div>  
           }
@@ -38,7 +41,7 @@ const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => 
               <a className='text-white px-4' href='/login'>Login</a>
               )
             : (
-              <LogOut className='text-white mx-2' onClick={handleLogout} />
+              <LogOut className='text-gray-500 hover:text-white mx-2' onClick={handleLogout} />
               )}
         </div>
       </div>

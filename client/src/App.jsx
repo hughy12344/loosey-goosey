@@ -10,6 +10,8 @@ import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import ClientsPage from './pages/ClientsPage'
 import ExercisesPage from './pages/ExercisesPage'
+import WorkoutsPage from './pages/WorkoutsPage'
+import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 function App () {
@@ -88,6 +90,8 @@ function App () {
         return 'My Clients'
       case '/exercises':
         return 'My Exercises'
+      case '/workouts':
+        return 'My Workouts'
       default:
         return ''
     }
@@ -109,12 +113,34 @@ function App () {
           {/* Dynamically displayed content based on route path */}
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/calendar' element={<CalendarPage />} />
-            <Route path='/calendar/:userID' element={<CalendarPage/>} />
             <Route path='/login' element={<LoginPage handleLogin={handleLogin} />} />
             <Route path='/register' element={<RegisterPage />} />
-            <Route path='/clients' element={<ClientsPage />} />
-            <Route path='/exercises' element={<ExercisesPage />} />
+            {/* Protected routes to prevent unauthorised access */}
+            <Route path='/calendar' element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <CalendarPage />
+              </ProtectedRoute>
+            } />
+            <Route path='/calendar/:userID' element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <CalendarPage />
+              </ProtectedRoute>
+            } />
+            <Route path='/clients' element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <ClientsPage />
+              </ProtectedRoute>
+            }/>
+            <Route path='/exercises' element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <ExercisesPage />
+              </ProtectedRoute>
+            } />
+            <Route path='/workouts' element={              
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <WorkoutsPage />
+              </ProtectedRoute>
+            } />
           </Routes>
         </div>
       </div>
