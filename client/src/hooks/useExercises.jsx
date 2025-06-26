@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 
 const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   const [firstName, setFirstName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  // Custom hook that fetches client's first name for practitioner view of calendar
+  // Custom hook that fetches client's first name for practitioner view of calendar/exercises
   useEffect(() => {
     if (userType === 'practitioner') {
       const fetchClientData = async () => {
+        setIsLoading(true);
         try {
           const response = await fetch(`http://localhost:8080/auth/${userID}`, {
             method: 'GET',
@@ -16,6 +18,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
             credentials: 'include'
           })
           const clientData = await response.json()
+          setIsLoading(false);
           setFirstName(clientData.firstName)
         } catch (err) {
           console.error('Error fetching user data: ', err)
@@ -28,6 +31,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   // Custom hook that fetches user's exercises to populate the calendar
   useEffect(() => {
     const fetchExercises = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch('http://localhost:8080/exercises', {
           method: 'GET',
@@ -47,6 +51,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               notes: exercise.notes,
               comment: exercise.comment
             }))
+          setIsLoading(false);
           setExercises(formattedExercisesForClient)
         } else {
           const formattedExercisesForPrac = data.filter(exercise => exercise.userID === urlUserID)
@@ -58,6 +63,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               notes: exercise.notes,
               comment: exercise.comment
             }))
+          setIsLoading(false);
           setExercises(formattedExercisesForPrac)
         }
       } catch (err) {
@@ -67,7 +73,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
     fetchExercises()
   }, [userID, userType, urlUserID, setExercises])
 
-  return { firstName }
+  return { firstName, isLoading }
 }
 
 export default useExercises

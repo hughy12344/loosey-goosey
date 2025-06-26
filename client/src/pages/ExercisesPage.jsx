@@ -1,25 +1,28 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import moment from 'moment'
 import useExercises from '../hooks/useExercises'
 import useExercisesManagement from '../hooks/useExercisesManagement'
-import CalendarUtilities from '../components/CalendarUtilities'
+import ExerciseUtilities from '../components/ExerciseUtilities'
 import ExerciseForm from '../components/ExerciseForm'
 
-const ExercisesPage = () => {
+const ExercisesPage = ({ location }) => {
     // State variables for showing exercise form
     const [showExerciseForm, setShowExerciseForm] = useState(false)
 
-    // Grab user ID and type from cookies (urlUserID is N/A for this page)
-    const userID = Cookies.get('userID')
+    // Grab user ID from URL for prac view of client calendar/exercises
+    const { userID: urlUserID } = useParams()
+
+    // Grab user ID and type from cookies
+    const userID = urlUserID || Cookies.get('userID')
     const userType = Cookies.get('userType')
-    const urlUserID = ''
 
     //Grab exercise state variables
     const {exercises, setExercises, handleAddExercise} = useExercisesManagement()
 
     //Import and use custom hook for fetching user's exercises
-    const firstName = useExercises({ userID, userType, urlUserID, setExercises })
+    const {firstName, isLoading } = useExercises({ userID, userType, urlUserID, setExercises })
     
     // Handle opening and closing the add exercise form
     const handleOpenExerciseForm = () => setShowExerciseForm(true)
@@ -28,10 +31,11 @@ const ExercisesPage = () => {
   return (
     <div>
         {/* Utilities bar for exercises */}
-        <CalendarUtilities
+        <ExerciseUtilities
             userType={userType}
             firstName={firstName}
             handleOpenExerciseForm={handleOpenExerciseForm}
+            location={location}
         />
 
         {/* Exercise form popup component when adding a new exercise */}
@@ -45,28 +49,17 @@ const ExercisesPage = () => {
         {/* Table that contains exercises for user */}
         <table className='w-full text-left'>
             <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Notes</th>
-                    <th>Comment</th>
+                <tr className='border-b border-slate-300'>
+                    <th className='p-2'>Date</th>
+                    <th className='p-2'>Title</th>
+                    <th className='p-2'>Start</th>
+                    <th className='p-2'>End</th>
+                    <th className='p-2'>Notes</th>
+                    <th className='p-2'>Comment</th>
                 </tr>
             </thead>
             <tbody>
-                {Array.isArray(exercises) && exercises.length > 0 ? (
-                    exercises.map(exercise => (
-                        <tr key={exercise.id}>
-                            <td>{moment(exercise.start).format('MMMM Do YYYY')}</td>
-                            <td>{exercise.title}</td>
-                            <td>{moment(exercise.start).format('h:mm:ss a')}</td>
-                            <td>{moment(exercise.end).format('h:mm:ss a')}</td>
-                            <td>{exercise.notes}</td>
-                            <td>{exercise.comment}</td>
-                        </tr>
-                    ))
-                ) : (
+                {isLoading ? (
                         <tr>
                             <td colSpan="6" className="text-center py-6">
                                 <div className="flex justify-center">
@@ -74,7 +67,18 @@ const ExercisesPage = () => {
                                 </div>
                             </td>
                         </tr>
-                    )
+                    ) : 
+                    (exercises.map(exercise => (
+                        <tr key={exercise.id}>
+                            <td className="p-2 whitespace-nowrap">{moment(exercise.start).format('MMMM Do YYYY')}</td>
+                            <td className="p-2 whitespace-nowrap">{exercise.title}</td>
+                            <td className="p-2 whitespace-nowrap">{moment(exercise.start).format('h:mm:ss a')}</td>
+                            <td className="p-2 whitespace-nowrap">{moment(exercise.end).format('h:mm:ss a')}</td>
+                            <td className="p-2 whitespace-nowrap">{exercise.notes}</td>
+                            <td className="p-2 w-full whitespace-normal">{exercise.comment}</td>
+                        </tr>
+                    ))
+                )
                 }
             </tbody>
         </table>

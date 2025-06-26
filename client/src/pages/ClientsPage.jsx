@@ -24,7 +24,7 @@ const ClientsPage = () => {
   return (
     <div>
       {/* Add user button (opens client form) */}
-      <UserPlus onClick={(handleOpenForm)} className='mb-5' />
+      <UserPlus onClick={(handleOpenForm)} className='mb-5 text-gray-500 hover:text-black' />
 
       {/* Client form component wrapped in div to darken background UI */}
       {showForm && (
@@ -42,6 +42,7 @@ const ClientsPage = () => {
             <th>First Name</th>
             <th>Email</th>
             <th>Calendar</th>
+            <th>Exercises</th>
           </tr>
         </thead>
         <tbody>
@@ -50,10 +51,10 @@ const ClientsPage = () => {
               <td>{client.firstName}</td>
               <td>{client.email}</td>
               <td>
-                <a
-                  href={`/calendar/${client.userID}`}
-                >View Calendar
-                </a>
+                <a href={`/calendar/${client.userID}`}>View Calendar</a>
+              </td>
+              <td>
+                <a href={`/exercises/${client.userID}`}>View Exercises</a>
               </td>
             </tr>
           ))}

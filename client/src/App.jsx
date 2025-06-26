@@ -107,7 +107,7 @@ function App () {
       {/* Main content area */}
       <div className='bg-slate-200 flex-1 flex items-center'>
         {/* Container for the page content */}
-        <div className='bg-white max-w-3xl mx-auto px-5 flex-1 rounded-lg p-5'>
+        <div className='bg-white max-w-4xl mx-auto px-5 flex-1 rounded-lg p-5'>
           {/* Page title */}
           <h1 className='text-3xl font-bold text-gray-900 py-6'>{pageTitle}</h1>
           {/* Dynamically displayed content based on route path */}
@@ -118,12 +118,12 @@ function App () {
             {/* Protected routes to prevent unauthorised access */}
             <Route path='/calendar' element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <CalendarPage />
+                <CalendarPage location={location}/>
               </ProtectedRoute>
             } />
             <Route path='/calendar/:userID' element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <CalendarPage />
+                <CalendarPage location={location}/>
               </ProtectedRoute>
             } />
             <Route path='/clients' element={
@@ -133,9 +133,14 @@ function App () {
             }/>
             <Route path='/exercises' element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <ExercisesPage />
+                <ExercisesPage location={location}/>
               </ProtectedRoute>
             } />
+            <Route path='/exercises/:userID' element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <ExercisesPage location={location}/>
+              </ProtectedRoute>
+            }/>
             <Route path='/workouts' element={              
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <WorkoutsPage />

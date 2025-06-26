@@ -1,10 +1,17 @@
 // Import libraries
 import { CalendarPlus2 } from 'lucide-react'
+import { useParams } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
-const CalendarUtilities = ({ userType, firstName, handleOpenExerciseForm }) => {
+const ExerciseUtilities = ({ userType, firstName, handleOpenExerciseForm, location }) => {
+  // Grab user ID from URL for prac view of client calendar/exercises
+  const { userID: urlUserID } = useParams()
+  // Grab user ID from cookies for client view
+  const userID = urlUserID || Cookies.get('userID')
+
   return (
     // Main div wrapper with flex style, gray background, and padding
-    <div className='flex justify-between items-center bg-gray-100 rounded p-2 mb-5'>
+    <div className='flex justify-between bg-gray-100 rounded p-2 mb-5'>
       {/* If user is a client, show button to add an exercise */}
       {userType === 'client' && (
         <CalendarPlus2
@@ -13,8 +20,11 @@ const CalendarUtilities = ({ userType, firstName, handleOpenExerciseForm }) => {
         />
       )}
       {/* If user is a practitioner, show client's name and button to navigate back to client page */}
-      {userType === 'practitioner' && (
+      {userType === 'practitioner' && location.pathname === `/calendar/${userID}` && (
         <h2 className='text-xl font-bold text-gray-900'>{firstName ? firstName + '\'s Calendar' : ''}</h2>
+      )}
+      {userType === 'practitioner' && location.pathname === `/exercises/${userID}` && (
+        <h2 className='text-xl font-bold text-gray-900'>{firstName ? firstName + '\'s Exercises' : ''}</h2>
       )}
       {userType === 'practitioner' && (
         <a
@@ -27,4 +37,4 @@ const CalendarUtilities = ({ userType, firstName, handleOpenExerciseForm }) => {
   )
 }
 
-export default CalendarUtilities
+export default ExerciseUtilities
