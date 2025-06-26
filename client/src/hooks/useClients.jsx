@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 // Custom hook to fetch clients assigned to logged in practitioner
 const useClients = ({ setClients, userID }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     const fetchClients = async () => {
+      setIsLoading(true)
       try {
         const response = await fetch('http://localhost:8080/clients', {
           method: 'GET',
@@ -27,7 +31,7 @@ const useClients = ({ setClients, userID }) => {
           const userData = await userResponse.json()
           return { ...client, firstName: userData.firstName, email: userData.email }
         }))
-
+        setIsLoading(false)
         setClients(filteredClientDetails)
       } catch (err) {
         console.error('Error fetching clients: ', err)
@@ -35,6 +39,8 @@ const useClients = ({ setClients, userID }) => {
     }
     fetchClients()
   }, [userID])
+
+  return { isLoading }
 }
 
 export default useClients

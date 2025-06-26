@@ -15,7 +15,7 @@ const ClientsPage = () => {
   const { clients, setClients, handleAddClient } = useClientsManagement()
 
   // Import and use custom hook for fetching clients assigned to logged in practitioner
-  useClients({ setClients, userID })
+  const {isLoading} = useClients({ setClients, userID })
 
   // Handlers for opening and closing the client form
   const handleOpenForm = () => setShowForm(true)
@@ -35,31 +35,40 @@ const ClientsPage = () => {
           />
         </div>
       )}
-      {/* Table that contains assigned client info and a link to their unique calendar */}
-      <table className='w-full text-left'>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Email</th>
-            <th>Calendar</th>
-            <th>Exercises</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clients.map(client => (
-            <tr key={client._id}>
-              <td>{client.firstName}</td>
-              <td>{client.email}</td>
-              <td>
-                <a href={`/calendar/${client.userID}`}>View Calendar</a>
-              </td>
-              <td>
-                <a href={`/exercises/${client.userID}`}>View Exercises</a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      {isLoading ? (
+        <div className="flex justify-center">
+          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+        ) : (
+        <div>
+          {/* Table that contains assigned client info and a link to their unique calendar */}
+          <table className='w-full text-left'>
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Calendar</th>
+                <th>Exercises</th>
+              </tr>
+            </thead>
+              <tbody>
+                {clients.map(client => (
+                  <tr key={client._id}>
+                    <td>{client.firstName}</td>
+                    <td>{client.email}</td>
+                    <td>
+                      <a href={`/calendar/${client.userID}`}>View Calendar</a>
+                    </td>
+                    <td>
+                      <a href={`/exercises/${client.userID}`}>View Exercises</a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+          </table>
+        </div>
+        )}
     </div>
   )
 }
