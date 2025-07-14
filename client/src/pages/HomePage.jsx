@@ -1,4 +1,4 @@
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       {/* App summary */}
@@ -7,4 +7,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

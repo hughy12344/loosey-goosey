@@ -28,7 +28,6 @@ const useExercisesManagement = (initialExercises = []) => {
   const handleAddComment = async (comment) => {
     try {
       const newComment = await addComment(comment, selectedExercise.id)
-      console.log(newComment)
       setSelectedExercise(newComment)
     } catch (err) {
       console.error('Error adding comment: ', err)

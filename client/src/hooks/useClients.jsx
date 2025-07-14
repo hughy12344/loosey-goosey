@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 //Backend URL path
 const apiBase = import.meta.env.VITE_API_URL;
 
 // Custom hook to fetch clients assigned to logged in practitioner
 const useClients = ({ setClients, userID }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     const fetchClients = async () => {
+      setIsLoading(true)
       try {
         const response = await fetch(`${apiBase}/clients`, {
           method: 'GET',
@@ -30,7 +34,7 @@ const useClients = ({ setClients, userID }) => {
           const userData = await userResponse.json()
           return { ...client, firstName: userData.firstName, email: userData.email }
         }))
-
+        setIsLoading(false)
         setClients(filteredClientDetails)
       } catch (err) {
         console.error('Error fetching clients: ', err)
@@ -38,6 +42,8 @@ const useClients = ({ setClients, userID }) => {
     }
     fetchClients()
   }, [userID])
+
+  return { isLoading }
 }
 
 export default useClients

@@ -7,10 +7,10 @@ import useExercises from '../hooks/useExercises'
 import ExerciseForm from '../components/ExerciseForm'
 import ExerciseDetails from '../components/ExerciseDetails'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import CalendarUtilities from '../components/CalendarUtilities'
+import ExerciseUtilities from '../components/ExerciseUtilities'
 import useExercisesManagement from '../hooks/useExercisesManagement'
 
-const CalendarPage = () => {
+const CalendarPage = ({ location }) => {
   // Grab user ID from URL for prac view of client calendar
   const { userID: urlUserID } = useParams()
   
@@ -24,7 +24,7 @@ const CalendarPage = () => {
   // Import exercise management functions and state
   const { exercises, setExercises, selectedExercise, setSelectedExercise, handleAddExercise, handleDeleteExercise, handleAddComment } = useExercisesManagement()
   // Import client's first name (for prac view) and exercises from DB
-  const { firstName } = useExercises({ userID, userType, urlUserID, setExercises })
+  const { firstName, isLoading } = useExercises({ userID, userType, urlUserID, setExercises })
 
   // Handle opening and closing the add exercise form
   const handleOpenExerciseForm = () => setShowExerciseForm(true)
@@ -37,10 +37,11 @@ const CalendarPage = () => {
   return (
     <div>
       {/* Utilities bar for calendar */}
-      <CalendarUtilities
+      <ExerciseUtilities
         userType={userType}
         firstName={firstName}
         handleOpenExerciseForm={handleOpenExerciseForm}
+        location={location}
       />
 
       {/* Exercise form popup component when adding a new exercise */}
@@ -60,11 +61,18 @@ const CalendarPage = () => {
         userType={userType}
       />
 
-      {/* Calendar component */}
-      <Calendar
-        exercises={exercises}
-        handleExerciseClick={handleExerciseClick}
-      />
+      {isLoading ? (
+          <div className="flex justify-center">
+            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+      ) : (
+        <div>
+          {/* Calendar component */}
+          <Calendar
+            exercises={exercises}
+            handleExerciseClick={handleExerciseClick}
+          />
+        </div> )}
     </div>
   )
 }
