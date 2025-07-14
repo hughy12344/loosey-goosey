@@ -1,14 +1,16 @@
 // Import libraries and components
-import { UserPlus } from 'lucide-react'
 import { useState } from 'react'
 import ClientForm from '../components/ClientForm'
+import WorkoutForm from '../components/WorkoutForm'
 import Cookies from 'js-cookie'
 import useClients from '../hooks/useClients'
 import useClientsManagement from '../hooks/useClientsManagement'
+import ClientUtilities from '../components/ClientUtilities'
 
 const ClientsPage = () => {
   // State variables for showing client form and user ID
   const [showForm, setShowForm] = useState(false)
+  const [showAddWorkout, setShowAddWorkout] = useState(false)
   const userID = Cookies.get('userID')
 
   // Import client state and management
@@ -21,10 +23,14 @@ const ClientsPage = () => {
   const handleOpenForm = () => setShowForm(true)
   const handleCloseForm = () => setShowForm(false)
 
+  const handleOpenAddWorkout = () => setShowAddWorkout(true)
+
   return (
     <div>
-      {/* Add user button (opens client form) */}
-      <UserPlus onClick={(handleOpenForm)} className='mb-5 text-gray-500 hover:text-black' />
+      <ClientUtilities 
+        handleOpenForm={handleOpenForm}
+        handleOpenAddWorkout={handleOpenAddWorkout}
+      />
 
       {/* Client form component wrapped in div to darken background UI */}
       {showForm && (
@@ -32,6 +38,15 @@ const ClientsPage = () => {
           <ClientForm
             handleAddClient={handleAddClient}
             handleCloseForm={handleCloseForm}
+          />
+        </div>
+      )}
+
+      {/* Workout form component wrapped in div to darken background UI */}
+      {showAddWorkout && (
+        <div className='fixed inset-0 bg-black/50 z-50 flex justify-center items-center'>
+          <WorkoutForm
+
           />
         </div>
       )}
