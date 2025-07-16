@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import useClients from '../hooks/useClients'
 import useClientsManagement from '../hooks/useClientsManagement'
 import ClientUtilities from '../components/ClientUtilities'
+import useWorkoutsManagement from '../hooks/useWorkoutsManagement'
 
 const ClientsPage = () => {
   // State variables for showing client form and user ID
@@ -15,6 +16,7 @@ const ClientsPage = () => {
 
   // Import client state and management
   const { clients, setClients, handleAddClient } = useClientsManagement()
+  const { handleAddWorkout } = useWorkoutsManagement()
 
   // Import and use custom hook for fetching clients assigned to logged in practitioner
   const {isLoading} = useClients({ setClients, userID })
@@ -24,6 +26,7 @@ const ClientsPage = () => {
   const handleCloseForm = () => setShowForm(false)
 
   const handleOpenAddWorkout = () => setShowAddWorkout(true)
+  const handleCloseAddWorkout = () => setShowAddWorkout(false)
 
   return (
     <div>
@@ -46,7 +49,10 @@ const ClientsPage = () => {
       {showAddWorkout && (
         <div className='fixed inset-0 bg-black/50 z-50 flex justify-center items-center'>
           <WorkoutForm
-
+            clients={clients}
+            userID={userID}
+            handleCloseAddWorkout={handleCloseAddWorkout}
+            handleAddWorkout={handleAddWorkout}
           />
         </div>
       )}

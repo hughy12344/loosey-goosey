@@ -1,5 +1,5 @@
 // Import libraries
-import { CalendarDays, LogOut, Users, List, HeartPulse } from 'lucide-react'
+import { CalendarDays, LogOut, Users, List, Dumbbell } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => {
@@ -18,7 +18,7 @@ const Banner = ({ isLoggedIn, firstName, userType, handleLogout, location }) => 
           {/* Show calendar and exercises link if user is a client and logged in */}
           {isLoggedIn && userType === 'client' && <div className='flex gap-4'>
               <Link to='/workouts' className={`pb-1 border-b-2 ${location.pathname === '/workouts' ? 'border-white' : 'border-transparent'}`}>
-                <HeartPulse href='/workouts' className={`hover:text-white ${location.pathname === '/workouts' ? 'text-white' : 'text-gray-500'}`} />
+                <Dumbbell href='/workouts' className={`hover:text-white ${location.pathname === '/workouts' ? 'text-white' : 'text-gray-500'}`} />
               </Link>
               <Link to='/calendar' className={`pb-1 border-b-2 ${location.pathname === '/calendar' ? 'border-white' : 'border-transparent'}`}>
                 <CalendarDays href='/calendar' className={`hover:text-white ${location.pathname === '/calendar' ? 'text-white' : 'text-gray-500'}`} />

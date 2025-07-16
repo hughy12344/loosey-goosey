@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const exerciseRouter = require('./routes/exercises')
 const authRouter = require('./routes/auth')
 const clientRouter = require('./routes/clients')
+const workoutRouter = require('./routes/workouts')
 
 const corsOptions = {
   origin: 'http://localhost:5173',
@@ -26,6 +27,7 @@ db.once('open', () => console.log('Connected to database'))
 app.use('/exercises', require('./middleware/auth'), exerciseRouter)
 app.use('/auth', authRouter)
 app.use('/clients', clientRouter)
+app.use('/workouts', require('./middleware/auth'), workoutRouter)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

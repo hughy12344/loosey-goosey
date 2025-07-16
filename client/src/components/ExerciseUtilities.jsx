@@ -29,7 +29,7 @@ const ExerciseUtilities = ({ userType, firstName, handleOpenExerciseForm, locati
       {userType === 'practitioner' && (
         <a
           href='/clients'
-          className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2 mb-3'
+          className='text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus-outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2'
         >Go Back
         </a>
       )}
