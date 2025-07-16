@@ -37,11 +37,11 @@ router.post('/', async (req, res) => {
 // Updating one
 router.patch('/:id', getExercise, async (req, res) => {
   if (req.body.title != null) {
-    res.exercise.title = req.body.title;
+    res.exercise.title = req.body.title
   }
 
   if (req.body.comment != null) {
-    res.exercise.comment = req.body.comment;
+    res.exercise.comment = req.body.comment
   }
 
   try {

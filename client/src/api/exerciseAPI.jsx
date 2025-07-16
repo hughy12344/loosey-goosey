@@ -40,7 +40,7 @@ export const addComment = async (comment, id) => {
       body: JSON.stringify(comment),
       credentials: 'include'
     })
-    return await response.json();
+    return await response.json()
   } catch (err) {
     console.error('Error adding comment: ', err)
     throw err

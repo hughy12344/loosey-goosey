@@ -13,7 +13,7 @@ import useExercisesManagement from '../hooks/useExercisesManagement'
 const CalendarPage = ({ location }) => {
   // Grab user ID from URL for prac view of client calendar
   const { userID: urlUserID } = useParams()
-  
+
   // State variables for showing exercise form
   const [showExerciseForm, setShowExerciseForm] = useState(false)
 
@@ -62,9 +62,9 @@ const CalendarPage = ({ location }) => {
       />
 
       {isLoading ? (
-          <div className="flex justify-center">
-            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          </div>
+        <div className='flex justify-center'>
+          <div className='w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
+        </div>
       ) : (
         <div>
           {/* Calendar component */}
@@ -72,7 +72,7 @@ const CalendarPage = ({ location }) => {
             exercises={exercises}
             handleExerciseClick={handleExerciseClick}
           />
-        </div> )}
+        </div>)}
     </div>
   )
 }

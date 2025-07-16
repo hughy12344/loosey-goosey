@@ -1,9 +1,9 @@
 const EXERCISES = [
-    'Custom',    
-    'Abdominal Workout',
-    'Foam Rolling',
-    'Walk',
-    'Yoga'
+  'Custom',
+  'Abdominal Workout',
+  'Foam Rolling',
+  'Walk',
+  'Yoga'
 ]
 
-export default EXERCISES;
+export default EXERCISES

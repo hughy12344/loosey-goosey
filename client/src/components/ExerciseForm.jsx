@@ -19,8 +19,8 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
       title: isCustomTitle ? customTitle : title,
       start: new Date(start),
       end: new Date(end),
-      notes: notes,
-      userID: userID
+      notes,
+      userID
     }
     handleAddExercise(newExercise)
     handleCloseExerciseForm()

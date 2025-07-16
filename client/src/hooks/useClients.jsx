@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Custom hook to fetch clients assigned to logged in practitioner
 const useClients = ({ setClients, userID }) => {
