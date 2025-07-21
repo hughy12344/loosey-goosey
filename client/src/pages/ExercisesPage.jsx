@@ -72,7 +72,7 @@ const ExercisesPage = ({ location }) => {
                   <td className='p-2 whitespace-nowrap'>{moment(exercise.start).format('h:mm:ss a')}</td>
                   <td className='p-2 whitespace-nowrap'>{moment(exercise.end).format('h:mm:ss a')}</td>
                   <td className='p-2 whitespace-nowrap'>{exercise.notes}</td>
-                  <td className='p-2 w-full whitespace-normal'>{exercise.comment}</td>
+                  <td className='p-2 w-full whitespace-normal break-all'>{exercise.comment}</td>
                 </tr>
               ))}
             </tbody>

@@ -16,6 +16,7 @@ const useWorkoutsManagement = (initialWorkouts = []) => {
 
   return {
     workouts,
+    setWorkouts,
     handleAddWorkout
   }
 }

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import EXERCISES from '../constants/exercises'
 
-const WorkoutForm = ({ clients, userID, handleCloseAddWorkout, handleAddWorkout }) => {
-  const [selectedClientID, setSelectedClientID] = useState(clients[0]._id)
+const WorkoutForm = ({ clients, userID, firstName, handleCloseAddWorkout, handleAddWorkout }) => {
+  const [selectedClientID, setSelectedClientID] = useState(clients[0].userID)
   const [rows, setRows] = useState([
     { exercise: '', sets: '', reps: '' }
   ])
@@ -15,6 +15,7 @@ const WorkoutForm = ({ clients, userID, handleCloseAddWorkout, handleAddWorkout 
     e.preventDefault()
     const newWorkout = {
       pracID: userID,
+      pracFirstName: firstName,
       date: new Date(),
       clientID: selectedClientID,
       exercises: rows.map(row => ({
@@ -44,10 +45,13 @@ const WorkoutForm = ({ clients, userID, handleCloseAddWorkout, handleAddWorkout 
       <select
         className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
         id='formClient'
-        onChange={(e) => setSelectedClientID(e.target.value)}
+        onChange={(e) => {
+          setSelectedClientID(e.target.value)
+          console.log(selectedClientID)
+        }}
       >
         {clients.map(client => {
-          return <option key={client._id} value={client._id}>{client.firstName}</option>
+          return <option key={client._id} value={client.userID}>{client.firstName}</option>
         })}
       </select>
       <label className='block text-sm font-medium text-gray-900' htmlFor='formTable'>Workout</label>

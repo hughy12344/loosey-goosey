@@ -13,6 +13,7 @@ const ClientsPage = () => {
   const [showForm, setShowForm] = useState(false)
   const [showAddWorkout, setShowAddWorkout] = useState(false)
   const userID = Cookies.get('userID')
+  const firstName = Cookies.get('firstName')
 
   // Import client state and management
   const { clients, setClients, handleAddClient } = useClientsManagement()
@@ -51,6 +52,7 @@ const ClientsPage = () => {
           <WorkoutForm
             clients={clients}
             userID={userID}
+            firstName={firstName}
             handleCloseAddWorkout={handleCloseAddWorkout}
             handleAddWorkout={handleAddWorkout}
           />

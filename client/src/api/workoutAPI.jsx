@@ -18,3 +18,18 @@ export const addWorkout = async (workout) => {
     throw err
   }
 }
+
+export const getPracName = async (workout) => {
+  try {
+    const response = await fetch(`http://localhost:8080/auth/${workout.pracID}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    return await response.json()
+  } catch (err) {
+    console.error('Error fetching prac name: ', err)
+  }
+}
