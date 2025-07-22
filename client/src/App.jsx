@@ -104,14 +104,14 @@ function App () {
   return (
     // Main container for the app with a flex layout
     <div className='flex flex-col h-screen oveflow-hidden'>
-      <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} location={location} />
+      <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} />
       {/* Main content area and sidebar */}
-      <div className='grid grid-cols-6 flex-1 overflow-hidden'>
+      <div className='grid grid-cols-5 flex-1 overflow-hidden'>
         <Sidebar className='col-span-1' isLoggedIn={isLoggedIn} userType={userType}/>
         {/* Main content area */}
-        <div className='bg-slate-200 flex-1 flex items-center col-span-5 overflow-y-auto'>
+        <div className='bg-slate-200 flex-1 flex items-center col-span-4 overflow-y-auto'>
           {/* Container for the page content */}
-          <div className='bg-white max-w-4xl mx-auto px-5 flex-1 rounded-lg p-5'>
+          <div className='bg-white max-w-3xl mx-auto px-5 flex-1 rounded-lg p-5'>
             {/* Page title */}
             <h1 className='text-3xl font-bold text-gray-900 py-6 mt-10'>{pageTitle}</h1>
             {/* Dynamically displayed content based on route path */}
@@ -166,7 +166,6 @@ function App () {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
