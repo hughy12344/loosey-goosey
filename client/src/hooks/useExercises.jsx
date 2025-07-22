@@ -11,7 +11,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   useEffect(() => {
     if (userType === 'practitioner') {
       const fetchClientData = async () => {
-        setIsLoading(true);
+        setIsLoading(true)
         try {
           const response = await fetch(`${apiBase}/auth/${userID}`, {
             method: 'GET',
@@ -21,7 +21,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
             credentials: 'include'
           })
           const clientData = await response.json()
-          setIsLoading(false);
+          setIsLoading(false)
           setFirstName(clientData.firstName)
         } catch (err) {
           console.error('Error fetching user data: ', err)
@@ -34,7 +34,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
   // Custom hook that fetches user's exercises to populate the calendar
   useEffect(() => {
     const fetchExercises = async () => {
-      setIsLoading(true);
+      setIsLoading(true)
       try {
         const response = await fetch(`${apiBase}/exercises`, {
           method: 'GET',
@@ -54,7 +54,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               notes: exercise.notes,
               comment: exercise.comment
             }))
-          setIsLoading(false);
+          setIsLoading(false)
           setExercises(formattedExercisesForClient)
         } else {
           const formattedExercisesForPrac = data.filter(exercise => exercise.userID === urlUserID)
@@ -66,7 +66,7 @@ const useExercises = ({ userID, userType, urlUserID, setExercises }) => {
               notes: exercise.notes,
               comment: exercise.comment
             }))
-          setIsLoading(false);
+          setIsLoading(false)
           setExercises(formattedExercisesForPrac)
         }
       } catch (err) {

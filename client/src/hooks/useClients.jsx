@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 //Backend URL path
 const apiBase = import.meta.env.VITE_API_URL;

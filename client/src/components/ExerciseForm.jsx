@@ -1,5 +1,6 @@
 // Import library
 import { useState } from 'react'
+import EXERCISES from '../constants/exercises'
 
 const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExerciseForm, userID }) => {
   // State variables for exercise inputs
@@ -18,8 +19,8 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
       title: isCustomTitle ? customTitle : title,
       start: new Date(start),
       end: new Date(end),
-      notes: notes,
-      userID: userID
+      notes,
+      userID
     }
     handleAddExercise(newExercise)
     handleCloseExerciseForm()
@@ -62,11 +63,9 @@ const ExerciseForm = ({ showExerciseForm, handleAddExercise, handleCloseExercise
           className='block bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg w-full p-2 mb-5'
           required
         >
-          <option value='Abdominal workout'>Abdominal workout</option>
-          <option value='Yoga'>Yoga</option>
-          <option value='Foam rolling'>Foam rolling</option>
-          <option value='Walk'>Walk</option>
-          <option value='Custom'>Custom</option>
+          {EXERCISES.map((exercise, idx) => (
+            <option key={idx} value={exercise}>{exercise}</option>
+          ))}
         </select>
         {/* Custom title input if 'Custom' is selected */}
         {isCustomTitle && (
