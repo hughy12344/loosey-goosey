@@ -107,9 +107,9 @@ function App () {
       <Banner isLoggedIn={isLoggedIn} firstName={firstName} userType={userType} handleLogout={handleLogout} />
       {/* Main content area and sidebar */}
       <div className='grid grid-cols-5 flex-1 overflow-hidden'>
-        <Sidebar className='col-span-1' isLoggedIn={isLoggedIn} userType={userType}/>
+        {isLoggedIn && <Sidebar className='col-span-1' isLoggedIn={isLoggedIn} userType={userType}/>}
         {/* Main content area */}
-        <div className='bg-slate-200 flex-1 flex items-center col-span-4 overflow-y-auto'>
+        <div className={`bg-slate-200 flex-1 flex items-center overflow-y-auto ${isLoggedIn ? 'col-span-4' : 'col-span-5'}`}>
           {/* Container for the page content */}
           <div className='bg-white max-w-3xl mx-auto px-5 flex-1 rounded-lg p-5'>
             {/* Page title */}
