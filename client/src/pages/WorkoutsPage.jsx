@@ -20,7 +20,7 @@ const WorkoutsPage = () => {
           <table className='w-full text-left'>
             <thead>
               <tr className='border-b border-slate-300'>
-                <th className='p-2'>Pract</th>
+                <th className='p-2'>Practitioner</th>
                 <th className='p-2'>Date</th>
                 <th className='p-2'>Exercise</th>
                 <th className='p-2'>Sets</th>

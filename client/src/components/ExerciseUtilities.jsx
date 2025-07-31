@@ -11,7 +11,7 @@ const ExerciseUtilities = ({ userType, firstName, handleOpenExerciseForm, locati
 
   return (
     // Main div wrapper with flex style, gray background, and padding
-    <div className='flex justify-between bg-gray-100 rounded p-2 mb-5'>
+    <div className='flex justify-between bg-gray-100 rounded gap-3 p-2 mb-5'>
       {/* If user is a client, show button to add an exercise */}
       {userType === 'client' && (
         <CalendarPlus2

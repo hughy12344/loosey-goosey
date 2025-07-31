@@ -1,5 +1,5 @@
 // Import libraries
-import { LogOut} from 'lucide-react'
+import { LogIn, LogOut} from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
@@ -12,6 +12,7 @@ const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
           <Link to='/'>
             <img src='/goose.svg' alt='Goose' width='40px' className='m-2 rounded-lg bg-white '/>
           </Link>
+          <h1 className='text-white font-bold text-2xl'>Loosey-Goosey</h1>
         </div>
         {/* Right side of the banner - Conditional links and user info */}
         <div className='flex gap-5 items-center flex-shrink-0'>
@@ -20,7 +21,7 @@ const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
           {/* Conditional login link / logout button based on logged in status */}
           {!isLoggedIn || isLoggedIn === null
             ? (
-              <a className='text-white px-4' href='/login'>Login</a>
+              <LogIn className='text-gray-500 hover:text-white mx-2' href='/login' />
               )
             : (
               <LogOut className='text-gray-500 hover:text-white mx-2' onClick={handleLogout} />

@@ -38,7 +38,11 @@ const AssignedWorkoutsPage = () => {
             ) : (
                 <div>
                     {/* Set for removing duplicate clientID and dropdown for client first names*/}
-                    <select id='clientDropdown' value={selectedClient || ''} onChange={(e) => setSelectedClient(e.target.value)}>
+                    <select 
+                    id='clientDropdown' 
+                    value={selectedClient || ''} onChange={(e) => setSelectedClient(e.target.value)}
+                    className='bg-gray-50 text-gray-900 text-sm border border-gray-300 rounded-lg p-2 mb-5'
+                    >
                         {[...new Set(workouts.map(workout => workout.clientID))].map(clientID => (
                             <option key={clientID} value={clientID}>{getClientFirstName(clientID)}</option>
                         ))}
