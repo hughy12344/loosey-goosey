@@ -7,6 +7,7 @@ import useClients from '../hooks/useClients'
 import useClientsManagement from '../hooks/useClientsManagement'
 import ClientUtilities from '../components/ClientUtilities'
 import useWorkoutsManagement from '../hooks/useWorkoutsManagement'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const ClientsPage = () => {
   // State variables for showing client form and user ID
@@ -60,9 +61,7 @@ const ClientsPage = () => {
       )}
 
       {isLoading ? (
-        <div className='flex justify-center'>
-          <div className='w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
-        </div>
+        <LoadingSpinner />
       ) : (
         <div>
           {/* Table that contains assigned client info and a link to their unique calendar */}

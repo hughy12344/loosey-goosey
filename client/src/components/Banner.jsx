@@ -1,8 +1,8 @@
 // Import libraries
-import { CalendarDays, LogOut, Users, List, Dumbbell } from 'lucide-react'
+import { LogOut} from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const Banner = ({ isLoggedIn, firstName, userType, handleLogout }) => {
+const Banner = ({ isLoggedIn, firstName, handleLogout }) => {
   return (
     // Main div wrapper with gray background
     <div className='bg-gray-800'>

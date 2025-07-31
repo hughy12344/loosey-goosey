@@ -1,3 +1,4 @@
+import LoadingSpinner from "../components/LoadingSpinner"
 import useWorkouts from "../hooks/useWorkouts"
 import useWorkoutsManagement from "../hooks/useWorkoutsManagement"
 import Cookies from 'js-cookie'
@@ -5,15 +6,14 @@ import moment from 'moment'
 
 const WorkoutsPage = () => {
   const userID = Cookies.get('userID')
+  const userType = Cookies.get('userType')
   const {workouts, setWorkouts} = useWorkoutsManagement()
-  const {isLoading} = useWorkouts({userID, setWorkouts})
+  const {isLoading} = useWorkouts({userID, userType, setWorkouts})
 
   return (
     <div>
       {isLoading ? (
-        <div className='flex justify-center'>
-          <div className='w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
-        </div>
+        <LoadingSpinner />
       ) : (
         <div>
           {/* Table for displaying user's exercise details */}
@@ -29,19 +29,22 @@ const WorkoutsPage = () => {
             </thead>
             <tbody className='border-b border-slate-300'>
               {workouts.map(workout => (
-                  workout.exercises.map((exercise, index) => (
-                    <tr key={index}>
+                  workout.exercises.map((exercise, index) => {
+                    const isLastExercise = index === workout.exercises.length - 1
+                    return(
+                      <tr key={index} className={isLastExercise ? 'border-b border-slate-300' : ''}>
                       {index === 0 ? (
                         <>
                           <td className='p-2 whitespace-nowrap' rowSpan={workout.exercises.length}>{workout.pracFirstName}</td>
                           <td className='p-2 whitespace-nowrap' rowSpan={workout.exercises.length}>{moment(workout.date).format('MMMM Do YYYY')}</td>
                         </>
-                    ) : null}
-                      <td className='p-2 whitespace-nowrap'>{exercise.exercise}</td>
-                      <td className='p-2 whitespace-nowrap'>{exercise.sets}</td>
-                      <td className='p-2 whitespace-nowrap'>{exercise.reps}</td>
+                      ) : null}
+                        <td className='p-2 whitespace-nowrap'>{exercise.exercise}</td>
+                        <td className='p-2 whitespace-nowrap'>{exercise.sets}</td>
+                        <td className='p-2 whitespace-nowrap'>{exercise.reps}</td>
                     </tr>
-                  ))
+                    )
+                  })
               ))}
             </tbody>
           </table>

@@ -28,6 +28,7 @@ const Sidebar = ({ isLoggedIn, userType }) => {
             {userType === 'practitioner' && 
             <div>
                 <SideBarItem Icon={Users} title="My Clients" url="/clients" />
+                <SideBarItem Icon={Dumbbell} title="My Assigned Workouts" url="/assignedWorkouts" />
             </div>}
         </div>
     )

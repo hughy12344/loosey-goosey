@@ -24,7 +24,6 @@ const WorkoutForm = ({ clients, userID, firstName, handleCloseAddWorkout, handle
         reps: row.reps ? parseInt(row.reps, 10) : undefined
       }))
     }
-    console.log(newWorkout)
     handleAddWorkout(newWorkout)
     handleCloseAddWorkout()
   }
@@ -47,7 +46,6 @@ const WorkoutForm = ({ clients, userID, firstName, handleCloseAddWorkout, handle
         id='formClient'
         onChange={(e) => {
           setSelectedClientID(e.target.value)
-          console.log(selectedClientID)
         }}
       >
         {clients.map(client => {

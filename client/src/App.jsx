@@ -6,11 +6,11 @@ import CalendarPage from './pages/CalendarPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import Banner from './components/Banner'
-import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import ClientsPage from './pages/ClientsPage'
 import ExercisesPage from './pages/ExercisesPage'
 import WorkoutsPage from './pages/WorkoutsPage'
+import AssignedWorkoutsPage from './pages/AssignedWorkoutsPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import Sidebar from './components/Sidebar'
 import './App.css'
@@ -93,6 +93,8 @@ function App () {
         return 'My Exercises'
       case '/workouts':
         return 'My Workouts'
+      case '/assignedWorkouts':
+        return 'My Assigned Workouts'
       default:
         return ''
     }
@@ -159,6 +161,13 @@ function App () {
                 path='/workouts' element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <WorkoutsPage />
+                  </ProtectedRoute>
+              }
+              />
+              <Route
+                path='/assignedWorkouts' element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <AssignedWorkoutsPage />
                   </ProtectedRoute>
               }
               />

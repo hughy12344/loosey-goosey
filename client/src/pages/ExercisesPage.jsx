@@ -6,6 +6,7 @@ import useExercises from '../hooks/useExercises'
 import useExercisesManagement from '../hooks/useExercisesManagement'
 import ExerciseUtilities from '../components/ExerciseUtilities'
 import ExerciseForm from '../components/ExerciseForm'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const ExercisesPage = ({ location }) => {
   // State variables for showing exercise form
@@ -47,9 +48,7 @@ const ExercisesPage = ({ location }) => {
       />
 
       {isLoading ? (
-        <div className='flex justify-center'>
-          <div className='w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin' />
-        </div>
+        <LoadingSpinner />
       ) : (
         <div>
           {/* Table for displaying user's exercise details */}
